@@ -1,0 +1,19 @@
+@import url(./reset.css);
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('//fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+*{box-sizing: border-box; font-family: 'Pretendard-Regular';}
+.container_fix{width: 1310px; padding: 0 15px; margin: 0 auto; max-width:100%}
+.clearfix:after{content:''; display: block; clear:both}
+
+*::-webkit-scrollbar {background: #efefef; width: 9px;}
+*::-webkit-scrollbar-thumb{background: #ffb800; border-radius:5px;}
+
+.sub_banner{background: no-repeat center center/cover; padding: 140px 0;}
+.sub_banner h2{color:#fff; font-size: 54px; letter-spacing: 0.2em; font-weight:700; text-shadow: 3px 3px 15px rgba(0,0,0,.6);}
+.sub_banner p{color:#fff; margin-top: 24px; letter-spacing: 0.2em; text-shadow: 3px 3px 15px rgba(0,0,0,.6);}
