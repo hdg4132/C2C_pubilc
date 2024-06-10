@@ -1,6 +1,6 @@
 
-import star_fill from '../img/star_fill.png'
-import star_line from '../img/star_line.png'
+import star_fill from '../assets/star_fill.png'
+import star_line from '../assets/star_line.png'
 
 const Viewer=()=>{
     return(

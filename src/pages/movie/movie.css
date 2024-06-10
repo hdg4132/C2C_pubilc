@@ -1,6 +1,6 @@
 @import url();
 
-.sub_movie.sub_banner{background-image: url(../../img/subBanner_movie.png)}
+.sub_movie.sub_banner{background-image: url(../../assets/subBanner_movie.png)}
 
 .content_header{padding: 50px 0 25px;}
 .sub_movie.movie_view .content_header{padding-bottom: 25px;}
@@ -64,7 +64,7 @@
 .write_reply button{float:right; margin-top: 5px;}
 
 
-.sub_customer .sub_banner{background-image: url(../../img/subBanner_customer.jpg);}
+.sub_customer .sub_banner{background-image: url(../../assets/subBanner_customer.jpg);}
 
 .faq_box{border-top:3px solid #333}
 .faq_box li{border-bottom:1px solid #ccc; }

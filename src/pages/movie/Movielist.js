@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Subbanner from '../../components/Subbanner'
 import Header from '../../components/Header'
-import temp_img from '../../img/movie_img.png'
+import temp_img from '../../assets/movie_img.png'
 import Button from '../../components/Button'
 import './movie.css'
 
