@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname)));
 
-const connection = mysql.createConnection({
+const connection = mysql.createConnection({ // 데이터베이스에 연결합니다.
   host: "localhost",
   user: "root",
   password: "0000",

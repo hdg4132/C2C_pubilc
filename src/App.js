@@ -10,7 +10,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} /> {/* 회원가입 - kwj */}
         </Routes>
       </div>
     </Router>

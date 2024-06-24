@@ -4,7 +4,7 @@ import axios from "axios";
 import "../signup.css";
 
 const Signup = () => {
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState({ // 폼 초기 값
     username: "",
     email: "",
     password: "",
@@ -14,12 +14,12 @@ const Signup = () => {
     detailaddress: "",
   });
 
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [formErrors, setFormErrors] = useState({}); // 각 입력 필드에 대한 오류
+  const [isSubmit, setIsSubmit] = useState(false); // 
   const [emailDuplication, setEmailDuplication] = useState(false); // 이메일 중복 확인 여부
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (e) => { 
+    const { name, value } = e.target; // 
     setFormValues({
       ...formValues,
       [name]: value,
@@ -34,7 +34,7 @@ const Signup = () => {
     }
   };
 
-  const validate = (values) => {
+  const validate = (values) => { // 유효성 검사 테스트 후 오류 반환
     const errors = {};
 
     if (!values.username) {
@@ -77,7 +77,7 @@ const Signup = () => {
     return errors;
   };
 
-  const checkEmailDuplication = async () => {
+  const checkEmailDuplication = async () => { // 중복확인 버튼 클릭시 발생하는 함수
     if (!formValues.email) {
       alert("이메일을 입력해 주세요.");
       return;
@@ -106,7 +106,7 @@ const Signup = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => { 
     e.preventDefault();
     const errors = validate(formValues);
     setFormErrors(errors);
@@ -114,7 +114,7 @@ const Signup = () => {
     if (Object.keys(errors).length === 0) {
       setIsSubmit(true);
       try {
-        const response = await axios.post("http://localhost:8000/signup", {
+        const response = await axios.post("http://localhost:8000/signup", { // 클라이언트에서 서버로 회원가입 요청
           username: formValues.username,
           password: formValues.password,
           email: formValues.email,
