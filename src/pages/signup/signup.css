@@ -23,7 +23,7 @@ html * , body *{box-sizing: border-box;}
 
 #sub_banner {
     padding: 140px 0;
-    background: url('/public/subBanner.png') no-repeat center center / cover;
+    background: url(../../assets/subBanner_login.png) no-repeat center 50%/cover;
 }
 
 #sub_banner h2 {

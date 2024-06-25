@@ -16,11 +16,13 @@ app.use(express.static(path.join(__dirname)));
 const connection = mysql.createConnection({ // 데이터베이스에 연결합니다.
   host: "localhost",
   user: "root",
-  password: "0000",
+  password: "1234",
   database: "movie",
   port: 3306,
 });
 
+
+// -----------------------------------240625 kwj signup 파트 ------------------------------------------------
 app.post("/checkEmailDuplication", (req, res) => {
   const { email } = req.body;
 
@@ -102,6 +104,8 @@ app.post("/signup", async (req, res) => {
     });
   }
 });
+
+// -----------------------------------240625 kwj signup 파트 ------------------------------------------------
 
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";
