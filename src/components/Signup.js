@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "../signup.css";
+import "./signup.css";
 
 const Signup = () => {
   const [formValues, setFormValues] = useState({ // 폼 초기 값
