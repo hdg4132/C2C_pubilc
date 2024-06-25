@@ -106,6 +106,28 @@ app.post("/signup", async (req, res) => {
 });
 
 // -----------------------------------240625 kwj signup 파트 ------------------------------------------------
+// 로그인 처리 API
+app.post('/login', (req, res) => {
+  const { email, password, usertype } = req.body;
+
+  // MySQL 쿼리 실행
+  const sql = `SELECT * FROM user WHERE email = ? AND password = ?`;
+  connection.query(sql, [email, password, usertype], (err, results) => {
+    if (err) {
+      console.error('로그인 오류: ' + err.stack);
+      res.status(500).json({ success: false, message: '로그인 중 오류가 발생했습니다.' });
+      return;
+    }
+
+    if (results.length > 0) {
+      // 로그인 성공
+      res.status(200).json({ success: true, data: results });
+    } else {
+      // 로그인 실패
+      res.status(401).json({ success: false, message: '이메일 또는 비밀번호가 잘못되었습니다.' });
+    }
+  });
+});
 
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";
