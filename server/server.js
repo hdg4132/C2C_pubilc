@@ -106,13 +106,18 @@ app.post("/signup", async (req, res) => {
 });
 
 // -----------------------------------240625 kwj signup 파트 ------------------------------------------------
+
+// -----------------------------------240625 kth login 파트 -------------------------------------------------
+
 // 로그인 처리 API
 app.post('/login', (req, res) => {
   const { email, password, usertype } = req.body;
+  console.log(email)
+  console.log(password)
 
   // MySQL 쿼리 실행
   const sql = `SELECT * FROM user WHERE email = ? AND password = ?`;
-  connection.query(sql, [email, password, usertype], (err, results) => {
+  connection.query(sql, [email, password], (err, results) => {
     if (err) {
       console.error('로그인 오류: ' + err.stack);
       res.status(500).json({ success: false, message: '로그인 중 오류가 발생했습니다.' });
@@ -128,6 +133,8 @@ app.post('/login', (req, res) => {
     }
   });
 });
+
+// -----------------------------------240625 kth login 파트 -------------------------------------------------
 
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";

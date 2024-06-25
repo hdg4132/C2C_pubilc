@@ -14,20 +14,20 @@ function LoginPage() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`${Server_URL}/login`, {
+      const response = await axios.post(`http://localhost:8000/login`, {
         email: email,
         password: password,
         usertype: "1",
       });
 
       if (response.data.success) {
-        const { usertype, userid, username } = response.data.data[0];
-        console.log("userid:", userid);
+        const { usertype, userId, username } = response.data.data[0];
+        console.log("userid:", userId);
         console.log("username:", username);
         console.log("usertype:", usertype);
 
         const userData = {
-          userid: userid,
+          userid: userId,
           username: username,
           usertype: usertype,
         };
@@ -41,7 +41,7 @@ function LoginPage() {
       }
     } catch (error) {
       console.error("로그인 에러:", error);
-      setLoginStatus("로그인에 실패하였습니다. 회원가입을 해주세요.");
+      alert("로그인에 실패하였습니다. 회원가입을 해주세요.");
     }
   };
 
