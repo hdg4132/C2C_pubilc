@@ -1,6 +1,6 @@
 import "./reset.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from "./components/Signup.js";
+import Signup from "./pages/signup/Signup.js";
 import Main from "./components/Main.js";
 
 
