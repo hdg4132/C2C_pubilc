@@ -74,7 +74,7 @@ function LoginPage() {
         <div className="loginbutton">
           <button
             className="button_text outline"
-            onClick={() => navigate("/Register")}
+            onClick={() => navigate("/signup")}
           >
             회원가입
           </button>

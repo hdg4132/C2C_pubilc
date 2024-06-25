@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Pagination from './Paging.jsx'
-import TopButton from './TopButton.jsx';
+import Pagination from './Paging.js'
+import TopButton from './TopButton.js';
 import "./MyPage.css"
 
 function MyPage() {
