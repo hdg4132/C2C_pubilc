@@ -15,12 +15,12 @@ const Signup = () => {
   });
 
   const [formErrors, setFormErrors] = useState({}); // 각 입력 필드에 대한 오류
-  const [isSubmit, setIsSubmit] = useState(false); // 
+  const [isSubmit, setIsSubmit] = useState(false); // 폼이 제출되기 시작할 때 true로 설정하고, 제출이 완료되면 다시 false로 설정하여 폼의 제출 상태를 관리
   const [emailDuplication, setEmailDuplication] = useState(false); // 이메일 중복 확인 여부
 
   const handleChange = (e) => { 
-    const { name, value } = e.target; // 
-    setFormValues({
+    const { name, value } = e.target; // 이벤트에서 name과 value를 추출합니다.
+    setFormValues({ // setFormValues를 사용하여 폼의 상태(formValues)를 업데이트합니다.
       ...formValues,
       [name]: value,
     });
@@ -77,14 +77,14 @@ const Signup = () => {
     return errors;
   };
 
-  const checkEmailDuplication = async () => { // 중복확인 버튼 클릭시 발생하는 함수
+  const checkEmailDuplication = async () => { // 이메일 입력 여부 확인
     if (!formValues.email) {
       alert("이메일을 입력해 주세요.");
       return;
     }
 
     try {
-      const response = await axios.post(
+      const response = await axios.post( // axios를 사용하여 서버에 POST 요청을 보냅니다.
         `http://localhost:8000/checkEmailDuplication`,
         { email: formValues.email }
       );
@@ -99,7 +99,7 @@ const Signup = () => {
         });
       }
 
-      alert(response.data.message);
+      alert(response.data.message);  // 서버에서 반환된 메시지를 사용자에게 알립니다.
     } catch (error) {
       console.error("이메일 중복 확인 중 오류:", error);
       alert("이메일 중복 확인 중 오류가 발생했습니다.");
@@ -165,7 +165,7 @@ const Signup = () => {
                 name="username"
                 id="name"
                 value={formValues.username}
-                placeholder="성함"
+                placeholder="성함을 입력하세요"
                 onChange={handleChange}
               />
               {formErrors.username && <p>{formErrors.username}</p>}
@@ -181,7 +181,7 @@ const Signup = () => {
                     name="email"
                     id="email"
                     value={formValues.email}
-                    placeholder="이메일 주소"
+                    placeholder="이메일 주소를 입력하세요"
                     onChange={handleChange}
                   />
                   {formErrors.email && <p>{formErrors.email}</p>}
@@ -205,7 +205,7 @@ const Signup = () => {
                   name="password"
                   id="password"
                   value={formValues.password}
-                  placeholder="비밀번호"
+                  placeholder="비밀번호를 입력하세요"
                   onChange={handleChange}
                 />
               </div>
@@ -220,7 +220,7 @@ const Signup = () => {
                 type="password"
                 name="confirmPassword"
                 value={formValues.confirmPassword}
-                placeholder="비밀번호 확인"
+                placeholder="비밀번호 확인을 입력하세요"
                 onChange={handleChange}
               />
               {formErrors.confirmPassword && (
@@ -236,7 +236,7 @@ const Signup = () => {
                 name="phoneNumber"
                 id="phonenumber"
                 value={formValues.phoneNumber}
-                placeholder="휴대폰 번호"
+                placeholder="휴대폰 번호를 입력하세요"
                 onChange={handleChange}
               />
               {formErrors.phoneNumber && <p>{formErrors.phoneNumber}</p>}
@@ -249,7 +249,7 @@ const Signup = () => {
                 type="text"
                 name="address"
                 value={formValues.address}
-                placeholder="주소"
+                placeholder="주소를 입력하세요"
                 onChange={handleChange}
               />
               {formErrors.address && <p>{formErrors.address}</p>}
@@ -263,7 +263,7 @@ const Signup = () => {
                 name="detailaddress"
                 id="detailaddress"
                 value={formValues.detailaddress}
-                placeholder="상세주소"
+                placeholder="상세주소를 입력하세요"
                 onChange={handleChange}
               />
               {formErrors.detailaddress && <p>{formErrors.detailaddress}</p>}
