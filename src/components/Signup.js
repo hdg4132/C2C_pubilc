@@ -44,7 +44,7 @@ const Signup = () => {
     if (!values.email) {
       errors.email = "*이메일을 입력해 주세요.";
     } else if (!emailDuplication) {
-      errors.email = "*이메일 중복 확인을 해주세요.";
+      errors.email = "*중복된 이메일이 있습니다.";
     }
 
     if (!values.password) {
