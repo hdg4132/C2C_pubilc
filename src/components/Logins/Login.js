@@ -10,7 +10,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const [loginStatus, setLoginStatus] = useState("");
 
-  const Server_URL = process.env.REACT_APP_Server_Side_Address;
+  // const Server_URL = process.env.REACT_APP_Server_Side_Address;
 
   const handleLogin = async () => {
     try {
@@ -21,13 +21,13 @@ function LoginPage() {
       });
 
       if (response.data.success) {
-        const { usertype, userId, username } = response.data.data[0];
-        console.log("userid:", userId);
+        const { usertype, id, username } = response.data.data[0];
+        console.log("id:", id);
         console.log("username:", username);
         console.log("usertype:", usertype);
 
         const userData = {
-          userid: userId,
+          id: id,
           username: username,
           usertype: usertype,
         };
