@@ -13,7 +13,8 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname)));
 
-const connection = mysql.createConnection({ // 데이터베이스에 연결합니다.
+const connection = mysql.createConnection({
+  // 데이터베이스에 연결합니다.
   host: "localhost",
   user: "root",
   password: "1234",
@@ -21,14 +22,23 @@ const connection = mysql.createConnection({ // 데이터베이스에 연결합�
   port: 3306,
 });
 
+// MySQL 연결
 
-// -----------------------------------240625 kwj signup 파트 ------------------------------------------------
+connection.connect((err) => {
+  if (err) {
+    console.error(" MySQL 접속에러: " + err.stack);
+    return;
+  }
+  console.log("Connected to MySQL as id " + connection.threadId);
+});
+
+// -----------------------------------240626 kwj signup 파트 ------------------------------------------------
+
 const usedUserNumbers = new Set(); // 중복 방지를 위한 Set
 
 async function generateUserid(usertype) {
   const prefix = {
     personal: 1,
-
   }[usertype];
 
   do {
@@ -40,8 +50,7 @@ async function generateUserid(usertype) {
   return id;
 }
 
-
-
+//-------------------------------이메일 중복 체크 ---------------------------------
 
 app.post("/checkEmailDuplication", (req, res) => {
   const { email } = req.body;
@@ -74,26 +83,25 @@ app.post("/checkEmailDuplication", (req, res) => {
   });
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error(" MySQL 접속에러: " + err.stack);
-    return;
-  }
-  console.log("Connected to MySQL as id " + connection.threadId);
-});
-
+//---------------------------회원가입 기능구현----------------------------------------------
 
 app.post("/signup", async (req, res) => {
   // 클라이언트에서 받은 요청의 body에서 필요한 정보를 추출합니다.
-  const { username, password, email, address, detailaddress, phonenumber, usertype: clientUsertype, } =
-    req.body;
+  const {
+    username,
+    password,
+    email,
+    address,
+    detailaddress,
+    phonenumber,
+    usertype: clientUsertype,
+  } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const id = await generateUserid(clientUsertype);
     const usertypeNumber = {
-      personal: 1, 
-
+      personal: 1,
     };
 
     const serverUsertype = usertypeNumber[clientUsertype];
@@ -102,7 +110,16 @@ app.post("/signup", async (req, res) => {
       "INSERT INTO signup (id, username, email, password, address, detailaddress, phonenumber, usertype) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     connection.query(
       sql,
-      [id, username, email, hashedPassword, address, detailaddress, phonenumber, serverUsertype],
+      [
+        id,
+        username,
+        email,
+        hashedPassword,
+        address,
+        detailaddress,
+        phonenumber,
+        serverUsertype,
+      ],
       (err, result) => {
         if (err) {
           // 쿼리 실행 중 에러가 발생한 경우 에러를 처리합니다.
@@ -132,8 +149,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// -----------------------------------240625 kwj signup 파트 ------------------------------------------------
-
+// -----------------------------------240626 kwj signup 파트 ------------------------------------------------
 
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";
