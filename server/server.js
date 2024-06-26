@@ -148,59 +148,6 @@ app.post("/signup", async (req, res) => {
 
 // -----------------------------------240625 kwj signup 파트 ------------------------------------------------
 
-// -----------------------------------240625 kth login 파트 -------------------------------------------------
-
-// 로그인 처리 API
-app.post("/login", async (req, res) => {
-  const { email, password, usertype } = req.body;
-  console.log(email);
-  console.log(password);
-
-  // MySQL 쿼리 실행
-  try {
-    // 이메일을 사용하여 데이터베이스에서 사용자를 찾습니다.
-    connection.query(
-      "SELECT * FROM signup WHERE email = ?",
-      [email],
-      async (err, result) => {
-        if (err) {
-          console.error("서버에서 에러 발생:", err);
-          res.status(500).send({ success: false, message: "서버 에러 발생" });
-        } else {
-          if (result.length > 0) {
-            // 사용자가 존재하면
-            const isPasswordMatch = await bcrypt.compare(
-              password,
-              result[0].password
-            );
-            if (isPasswordMatch && usertype == result[0].usertype) {
-              if (!req.session) {
-                req.session = {};
-              }
-              req.session.usertype = result[0].usertype;
-              req.session.userid = result[0].id;
-
-              res.send({ success: true, message: "로그인 성공", data: result });
-            } else {
-              res.send({
-                success: false,
-                message: "정보가 일치하지 않습니다.",
-              });
-            }
-          } else {
-            res.send({ success: false, message: "유저 정보가 없습니다." });
-          }
-        }
-      }
-    );
-  } catch (error) {
-    console.error("비밀번호 비교 중 오류:", error);
-    res.status(500).send({ success: false, message: "서버 에러 발생" });
-  }
-});
-
-// -----------------------------------240625 kth login 파트 -------------------------------------------------
-
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";
   connection.query(sqlQuery, (err, result) => {
