@@ -4,7 +4,6 @@ import axios from "axios";
 import './TicketModal.css'
 import Checkbox from "../../components/CheckBox";
 import MultiPayment from "../../components/MultiPayment";
-import TicketCompleteOrder from "./TicketCompleteOrder";
 import { getDayOfWeek } from "../../util/util";
 
 export const TicketModal = () => {
@@ -68,9 +67,9 @@ export const TicketModal = () => {
   const ticket = JSON.parse(localStorage.getItem("ticket"));
   console.log(ticket)
   
-  const [extra1, setExtra1] = useState(0); // 일반석 개수 저장
-  const [normal1, setNormal1] = useState(0); // 특수석 개수 저장
-  const [totalSeat1, setTotalSeat1] = useState(0); // 총 좌석 개수저장
+  const [extra, setExtra] = useState(0); // 일반석 개수 저장
+  const [normal, setNormal] = useState(0); // 특수석 개수 저장
+  const [totalSeat, setTotalSeat] = useState(0); // 총 좌석 개수저장
   // 좌석 정보가 들어오면 seats 변수에 저장
   const seats = ticket.seat
 
@@ -92,9 +91,9 @@ export const TicketModal = () => {
       sumNormal += 1
     }
 
-    setExtra1(sumExtra)
-    setNormal1(sumNormal)
-    setTotalSeat1(sumExtra+sumNormal)
+    setExtra(sumExtra)
+    setNormal(sumNormal)
+    setTotalSeat(sumExtra+sumNormal)
 
   })}
   calSeat()
@@ -103,7 +102,7 @@ export const TicketModal = () => {
 // 좌석 가격
 let totalTicketPrice = () =>{
   const extraPrice = 5000;
-  let sumprice = ((ticket.price*totalSeat1)+(extra1*extraPrice));
+  let sumprice = ((ticket.price*totalSeat)+(extra*extraPrice));
   return sumprice
 }
 
@@ -247,15 +246,15 @@ let seatList = () => {
         time: ticket.time,
         seat: data,
         price: ticket.price,
-        normal: normal1,
-        extra: extra1,
+        normal: normal,
+        extra: extra,
         orderNumber: createOrderNumber,
         userId: userInfo.userId,
         id: movies[0].id,
         name: nameInfo,
         emailInfo: emailInfo,
         phoneNumber: phoneNumberInfo,
-        totalCount: normal1+extra1,
+        totalCount: normal+extra,
         totalAmount: totalTicketPrice(),
         payment: payment,
         imageURL: movies[0].thumbnail,
@@ -464,8 +463,8 @@ let seatList = () => {
             <div className="price">
             <span className="seat"> 
               {/* 좌석등급에 따른 매수 출력 */}
-              <p>일반석 {normalSeat()}매</p>
-              <p>특수석 {extraSeat()}매</p>
+              <p>일반석 {normal}매</p>
+              <p>특수석 {extra}매</p>
             </span>
             {/* 결제금액계산 */}
             <span className="total-price"><h3>총금액</h3> <span><span className="priceCal">{`${priceCal()}`}</span>원</span></span>

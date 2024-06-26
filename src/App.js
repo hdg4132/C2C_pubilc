@@ -1,10 +1,13 @@
 import "./reset.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from "./components/Signup.js";
+import Signup from "./pages/signup/Signup.js";
 import Main from "./components/Main.js";
 import { TicketBack } from './pages/ticket/TicketBack';
 import { TicketModal} from './pages/ticket/TicketModal';
 import TicketCompleteOrder from './pages/ticket/TicketCompleteOrder';
+import Login from "./components/Logins/Login.js";
+import Mypage from "./components/moviepage/MyPage.js";
+
 
 function App() {
 
@@ -22,6 +25,8 @@ function App() {
               {background && <Route path="/ticket/modal" element={<TicketModal />} />}  {/* 결제용 모달창 hms */}
               </Route>
               <Route path="/completeOrder" element={<TicketCompleteOrder />} /> {/* 결제완료페이지 hms */}
+          <Route path="/Login" element={<Login />}></Route> {/* 로그인 - kth */}
+          <Route path="/Mypage" element={<Mypage />}></Route> {/* 마이페이지 - kth */}
         </Routes>
       </div>
     </Router>
