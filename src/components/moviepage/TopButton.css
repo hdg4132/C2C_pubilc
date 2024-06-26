@@ -1,0 +1,32 @@
+.top-button {
+  display: inline-block;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  border: none;
+  outline: none;
+  background-size: 80px;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10%;
+  transition: opacity 0.5s, background-color 0.3s, transform 0.3s; 
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-button.show {
+  opacity: 1;
+}
+
+.top-button:hover {
+  background-color: #8b8b8b;
+}
+
+.red_arrow {
+  width: 60px;
+  height: 60px;
+}

@@ -7,6 +7,8 @@ export default function Main() {
         <h1>Main</h1>
         <ul>
             <Link to="/signup"><li>회원가입</li></Link>
+            <Link to="/Login"><li>로그인</li></Link>
+            <Link to="/Mypage"><li>마이페이지</li></Link>
         </ul>
 
     </div>
