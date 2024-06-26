@@ -23,6 +23,26 @@ const connection = mysql.createConnection({ // 데이터베이스에 연결합�
 
 
 // -----------------------------------240625 kwj signup 파트 ------------------------------------------------
+const usedUserNumbers = new Set(); // 중복 방지를 위한 Set
+
+async function generateUserid(usertype) {
+  const prefix = {
+    personal: 1,
+
+  }[usertype];
+
+  do {
+    randomDigits = Math.floor(10000 + Math.random() * 90000);
+    id = `${prefix}${randomDigits}`;
+  } while (usedUserNumbers.has(id)); // 중복된 userid가 있다면 다시 생성
+
+  usedUserNumbers.add(id); // Set에 추가
+  return id;
+}
+
+
+
+
 app.post("/checkEmailDuplication", (req, res) => {
   const { email } = req.body;
 
@@ -65,17 +85,24 @@ connection.connect((err) => {
 
 app.post("/signup", async (req, res) => {
   // 클라이언트에서 받은 요청의 body에서 필요한 정보를 추출합니다.
-  const { username, password, email, address, detailaddress, phonenumber } =
+  const { username, password, email, address, detailaddress, phonenumber, usertype: clientUsertype, } =
     req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
+    const id = await generateUserid(clientUsertype);
+    const usertypeNumber = {
+      personal: 1, 
+
+    };
+
+    const serverUsertype = usertypeNumber[clientUsertype];
 
     const sql =
-      "INSERT INTO signup (username, email, password, address, detailaddress, phonenumber) VALUES (?, ?, ?, ?, ?, ?)";
+      "INSERT INTO signup (id, username, email, password, address, detailaddress, phonenumber, usertype) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     connection.query(
       sql,
-      [username, email, hashedPassword, address, detailaddress, phonenumber],
+      [id, username, email, hashedPassword, address, detailaddress, phonenumber, serverUsertype],
       (err, result) => {
         if (err) {
           // 쿼리 실행 중 에러가 발생한 경우 에러를 처리합니다.
@@ -106,6 +133,7 @@ app.post("/signup", async (req, res) => {
 });
 
 // -----------------------------------240625 kwj signup 파트 ------------------------------------------------
+
 
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";
