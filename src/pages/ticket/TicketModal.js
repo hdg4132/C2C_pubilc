@@ -46,12 +46,8 @@ export const TicketModal = () => {
   ];
  
   // localStorage에서 현재 예약중인 영화 데이터를 받아옴
-  // const movies = JSON.parse(localStorage.getItem("movies"));
-  // 영화 이미지용 useState
-  // const [moviepic, setMoviepic] = useState();
-  // 영화데이터 불러오면 같이 설정가능  
-  const moviepic = "http://localhost:8000/picture1.jpg"
-  
+  const movies = JSON.parse(localStorage.getItem("movie"));
+  const moviepic = movies.thumbnail
   // 세션 스토리지에서 userInfo를 받아옴
   // const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
   // 추후 유저데이터 입력을위한 useState  

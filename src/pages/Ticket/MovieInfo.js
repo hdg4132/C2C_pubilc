@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 // 날짜 문자열에서 날짜 부분만 추출하는 함수
@@ -10,6 +10,7 @@ const convertDate = (dateString) => {
 
 const MovieInfo = ({ movie, selectedMovie, selectedDate, selectedTime, selectedSeats }) => {
   const navigate = useNavigate(); // 페이지 이동을 위한 hook
+  const location = useLocation();
 
   // 결제 버튼 클릭 시 실행되는 함수
   const handlePayClick = async () => {
@@ -22,11 +23,8 @@ const MovieInfo = ({ movie, selectedMovie, selectedDate, selectedTime, selectedS
           selectedTime,
           selectedSeats
         };
-
-        console.log('Sending Reservation Data:', reservationData); // 예약 데이터 로그 출력
-        const response = await axios.post('http://localhost:8000/reservations', reservationData); // 서버에 예약 데이터 전송
-        console.log('Reservation Success:', response.data); // 서버 응답 로그 출력
-        navigate('/payment'); // 결제 페이지로 이동
+        localStorage.setItem('ticket', JSON.stringify(reservationData))
+        navigate('/ticket/modal', { state: { background: location } }); // 결제 페이지로 이동
       } catch (error) {
         console.error('Error making reservation:', error); // 에러 로그 출력
       }
