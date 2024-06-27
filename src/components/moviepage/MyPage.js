@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Pagination from './Paging.js';
-import TopButton from './TopButton.js';
 import { useNavigate } from "react-router-dom";
 import "./MyPage.css";
 
@@ -125,9 +124,6 @@ function MyPage() {
                         onPageChange={onPageChange}
                     />
                 </div>
-            </div>
-            <div style={{ height: '1000px' }}>
-                <TopButton />
             </div>
             {showPopup && (
                 <div className="popup show">
