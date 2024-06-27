@@ -1,0 +1,142 @@
+@import url(../components/common.css);
+
+/* ---------------------------sjh movie 전체영역------------------------- */
+
+/* 서브배너 */
+.sub_movie.sub_banner{background-image: url(../assets/subBanner_movie.png)}
+.sub_theater.sub_banner{background-image: url(../assets/subBanner_theater.png)}
+
+
+/* 요즘영화 게시판 목록 */
+.content_header{padding: 50px 0 25px;}
+.sub_movie.movie_view .content_header{padding-bottom: 25px;}
+.content_tt{font-size:30px; font-weight:600}
+.search_form{float:right; border:1px solid #ddd; height: 30px; line-height: 30px; display: flex;}
+.search_form input{border:none; padding: 0 15px; font-size:14px; color:#666; }
+.search_form input:focus{outline: none;}
+.search_form input::placeholder{color:#ccc; }
+.search_form button{width: 34px; height: 28px; border:none; background: none;}
+.search_form button span{display: block; width: 13px; height: 13px; position: relative; }
+.search_form button span:before{content:''; display: block; border:1px solid #ffb800; width: 10px; height: 10px; border-radius:50%; position: absolute; top: 0; left: 0;}
+.search_form button span:after{content:''; display: block; width: 4.5px; height: 1px; position: absolute; right: 0; bottom: 0; transform:translate(0%,-50%) rotate(45deg); background: #ffb800;}
+
+.movie_con{display: flex; flex-wrap:wrap; margin-bottom: -25px;}
+.movie_con_it{width: 21.094%; margin-bottom: 55px; cursor:pointer; margin-right: 5.208%;}
+.movie_con_it:nth-child(4n){margin-right: 0;}
+.movie_con_it .img_wrap{width: 100%; padding-bottom: 143.333%;height: 0; position: relative; overflow: hidden;}
+.movie_con_it .img_wrap .img_empty{background: #ccc;}
+.movie_con_it .img_wrap > *{min-width:100%; height: 100%; position: absolute; left: 50%; top: 50%; transform:translate(-50%,-50%); }
+.movie_con_it h5{display: flex;padding-top: 15px; align-items: center;}
+.movie_con_it h5 .movie_title{font-size:18px; font-weight:500; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; display: block;}
+.movie_con_it h5 .status{color:#fff; background: #999; border-radius:3px; font-size:12px; padding: 5px; margin-right: 10px; white-space: nowrap;}
+.movie_con_it h5 .status.ing{background: #ffb800;}
+.movie_con_it p{text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-top: 15px; font-size:14px; color:#666}
+
+/* theater  */
+.theater_con{border-top:2px solid #333;}
+.theater_con_it{padding: 15px 10px; display: flex; border-bottom:1px solid #ccc}
+.theater_con_it .img_wrap{width: 23.437%; margin-right: 35px; min-height:180px}
+.theater_con_it .img_wrap img{height:100%; width: 100%; object-fit: cover;}
+.theater_con_it .text_wrap p{margin-top: 20px;}
+
+
+
+/* 페이지네이션 공통 */
+.content_tail{margin-bottom: 100px; margin-top: 25px;}
+.btn_list{text-align: right;}
+.btn_default{font-size:15px; border-radius:5px; border:1px solid #ffb800; padding: 6px 20px; text-align: center; min-width:80px;color:#ffb800; display: inline-block; background: #fff; cursor:pointer}
+.btn_default + .btn_default{margin-left: 8px;}
+.btn_default.color{color:#fff; background: #ffb800;}
+.pagination{margin-top: 25px; display: flex; justify-content: center;}
+.pagination ul{ display: flex; justify-content: center;}
+.pagination li a{ color:#999; font-size:16px; font-weight:300; width: 22px; height: 22px; text-align: center; display: inline-block; line-height: 22px; margin: 0 1px; border-radius:50%;}
+.pagination li.active a{background: #ffb800; color:#fff}
+.pagination li{position: relative;}
+.pagination li.left_page{margin-right: 15px;}
+.pagination li.right_page{margin-left: 15px;}
+.pagination li span{display: block; width: 7px; height: 7px; border:1px solid #ccc; position: absolute; top: 50%; left: 50%; transform:translate(-50%,-75%) rotate(45deg)}
+.pagination li.left span{border-width:0 0 1px 1px;}
+.pagination li.left.double span:after{content:''; display: block; width: 7px; height: 7px; border:1px solid #ccc; position: absolute; top: 100%; left: 0%; transform:translate(-50%,-50%); border-width: 0 0 1px 1px;}
+.pagination li.right span{border-width:1px 1px 0 0;}
+.pagination li.right.double span:after{content:''; display: block; width: 7px; height: 7px; border:1px solid #ccc; position: absolute; top: 0%; left: 100%; transform:translate(-50%,-50%); border-width: 1px 1px 0 0;}
+
+
+
+/* 요즘영화 상세 */
+.content_title{text-align: center; border-top:2px solid #333; border-bottom:1px solid #a3a3a3; padding: 14px 0;}
+.content_title h5{font-weight:600;font-size: 18px; }
+.content_title .status{color:#fff; background: #999; border-radius:3px; font-size:12px; padding: 5px; margin-right: 10px; white-space: nowrap; display: inline-block;}
+.content_title .status.ing{background: #ffb800;}
+.content_con{min-height:500px;margin: 15px 0; padding: 15px 15px 45px; }
+.content_con img{max-width:100%; margin-bottom: 25px;}
+.view_reply{margin-top: 30px; }
+.view_reply .reply_tt{padding: 10px 20px; background: #ffb800; color:#fff; font-weight:500; font-size:16px}
+
+.reply_list{}
+.reply_list li{padding: 30px 20px; border-bottom:1px solid #ddd; }
+.reply_header{margin-bottom: 16px;}
+.reply_info{font-weight:600; font-size:14px; display: flex;}
+.reply_info .reply_star{margin-left: 15px; display: flex; align-items: center;}
+.reply_info .reply_star i{font-size:15px; color:#ccc; display: inline-block; margin: 0 1px;}
+.reply_info .reply_star i.active{color:#ffb800}
+.reply_con{color:#666; font-size:13px; line-height: 1.4;}
+ 
+.write_reply{padding: 30px 20px; border-bottom:1px solid #a3a3a3}
+.write_reply textarea{border:1px solid #ddd; resize: none; width: 100%; height: 95px; overflow: auto; font-family: 'Pretendard-Regular'; padding: 10px 15px; border-radius:5px}
+.write_reply textarea:focus{outline: none;}
+.write_reply button{float:right; margin-top: 5px;}
+
+
+/* 고객센터 서브배너 */
+.sub_banner.sub_customer{background-image: url(../assets/subBanner_customer.jpg);}
+/* faq */
+.faq_box{border-top:3px solid #333}
+.faq_box li{border-bottom:1px solid #ccc; }
+.faq_box li > div{display: flex; justify-content: flex-start; padding: 15px 30px;}
+.faq_box li .icon_faq{width: 40px; height: 40px; border:1px solid #ffb800; border-radius:50%; text-align: center; line-height: 40px; color:#ffb800; font-weight:600; font-size:21px; margin-right: 20px;}
+
+.faq_box li .faq_q{position: relative;}
+.faq_box li .faq_q .open_faq{display: block; position: absolute; top: 25px; right: 30px; width: 13px;height: 13px; border:2px solid #ccc; border-width:2px 2px 0 0; transform:rotate(135deg); transition:.3s} 
+.faq_box li.open .faq_q .open_faq{transform:translateY(50%) rotate(-45deg); border-color:#ffb800;} 
+.faq_box li .faq_q .faq_con{color:#333; font-size:18px; font-weight:500} 
+
+.faq_box li .faq_a {border-top:1px solid #efefef; display: none;}
+.faq_box li .faq_a .icon_faq{background: #ffb800; color:#fff;}
+
+.faq_box li .faq_con{width: calc(100% - 60px); padding-top: 8px; line-height: 1.6; color:#666} 
+
+/* 일반게시판 */
+.default_list{border-top:2px solid #333}
+.default_list > li{display: flex; text-align: center; border-bottom:1px solid #ccc; padding: 13px 20px;}
+.default_list .title{width: 69%;}
+.default_list .author{width: 20%;}
+.default_list .date{width: 11%;}
+
+.default_list .list_tt{color:#333; font-weight:600}
+.default_list .list_con{color:#666;}
+.default_list .list_con .title{text-align: left;}
+
+/* 찾아오시는 길 */
+.map .content_tt{padding-bottom: 20px; border-bottom:2px solid #333}
+.kakao_map{width: 100%; height: 420px;}
+
+.contact_wrap{display: flex; align-items: center; margin-top: 30px; width: 100%;}
+.contact_con{padding: 45px 30px; width: 33.333%;}
+.contact_con + .contact_con{padding: 45px 30px; border-left:1px solid #efefef}
+.contact_con .cont_tt{font-size:24px; font-weight:600; margin-bottom: 15px; letter-spacing: 0.08em;}
+.contact_con.subway{display: flex; align-items: center;}
+.contact_con .subway_line{display: inline-block; width: 52px; height: 52px; border:3px solid #7cabd5; border-radius:50%; line-height: 48px; text-align: center; font-size:16px; font-weight:700; color:#7cabd5; margin-right: 10px;}
+.contact_con p{}
+
+
+
+/* 요즘영화 글쓰기페이지 */
+
+
+.Moviewrite .write_con{display: flex; padding: 15px 30px;}
+.Moviewrite .write_label{width: 80px; display: inline-block; text-align: left; font-size:18px; font-weight:500}
+.Moviewrite .write_con input{width: 500px; border-radius:3px; border:1px solid #ddd; height: 35px; padding: 0 15px; }
+.Moviewrite .write_con textarea{border:1px solid #ddd; height: 400px; overflow-y: auto; width: calc(100% - 80px); border-radius:3px; resize: none;}
+
+
+/* --------------------------- //sjh movie 전체영역 ------------------------- */

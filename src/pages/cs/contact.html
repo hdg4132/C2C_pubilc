@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요즘 영화 | C2C</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/movie.css">
+</head>
+<body>
+    <main class="sub_customer subpage map">
+        <div class="sub_banner">
+            <div class="container_fix">
+                <h2 class="sub_tt">고객센터</h2>
+                <p>무엇이든 물어보세요.</p>
+
+            </div>
+        </div>
+        <div class="content_wrap">
+            <div class="content_header">
+                <div class="container_fix clearfix">
+                    <h3 class="content_tt">찾아오시는 길</h3>
+               </div>
+            </div>
+            <div class="content_body">
+                <div class="container_fix">
+                    <div class="kakao_map">
+                    </div>
+                    <div class="contact_wrap">
+                        <div class="contact_con">
+                            <h5 class="cont_tt">Come 2 Cinema</h5>
+                            <p>인천 남동구 인주대로 593 엔타스 12층</p>
+                        </div>
+                        <div class="contact_con subway">
+                            <h5 class="subway_line">인천1</h5>
+                            <p>예술회관역 2번출구 직진 보도 1분</p>
+                        </div>
+                        <div class="contact_con">
+                            <h5 class="cont_tt">Contact Us</h5>
+                            <p>032) 000-0000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content_tail">
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef055bee3ff1f514471d133a0c1c12b7"></script>
+
+    <script>
+		var container = document.querySelector('.kakao_map');
+		var options = {
+			center: new kakao.maps.LatLng(37.4503564603982, 126.702873928345),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+        
+        // 마커가 표시될 위치입니다 
+        var markerPosition  = new kakao.maps.LatLng(37.4503564603982, 126.702873928345); 
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+
+	</script>
+</body>
+</html>

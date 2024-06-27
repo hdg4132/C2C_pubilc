@@ -10,6 +10,8 @@ const nodemailer = require("nodemailer");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const dotenv = require("dotenv");
+const multer = require("multer");
+const fs = require('fs');
 
 const app = express(); 
 const port = 8000; 
@@ -542,12 +544,104 @@ app.post("/reqOrder", async (req, res, next) => {
 });
 //--------------------------------------------------/hms ticket 파트-----------------------------------------------------------//
 
-app.get("/movie", (req, res) => {
-  const sqlQuery = "SELECT * FROM movie;";
-  connection.query(sqlQuery, (err, result) => {
-    res.send(result);
+
+//-----------------------------------sjh 게시판 글쓰기-----------------------------------
+
+const storage = multer.diskStorage({
+  destination: "./uploads/",
+  filename: function(req, file, cb) {
+    cb(null, "imgfile" + Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({
+  storage: storage,
+  // limits: { fileSize: 1000000 } // 파일 최대 용량
+});
+
+
+
+app.get('/board_movie', (req, res) => { //영화 게시판 목록 불러오기
+  const sql = 'SELECT * FROM board_movie';
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.json(results);
   });
 });
+
+
+app.post('/board_movie/write', upload.single('img'), (req, res) => { //영화 게시판 글쓰기
+  const { title, movie_status, content } = req.body;
+  const img = req.file ? req.file.filename : null;
+
+  console.log({ title, movie_status, content } +',...'+ req.file.filename)
+
+  const sql = 'INSERT INTO board_movie (title, movie_status, img, content) VALUES (?, ?, ?, ?)';
+  connection.query(sql, [title, movie_status, img, content], (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.status(200).json({ id: results.insertId, title, movie_status, img, content });
+  });
+});
+
+app.get('/board_movie/post/:id', (req, res) => { //영화게시판 게시글 상세페이지
+  const postId = req.params.id;
+  const sql = 'SELECT * FROM board_movie WHERE id = ?';
+  connection.query(sql, [postId], (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    if (results.length === 0) {
+      return res.status(404).send('Post not found');
+    }
+    res.json(results[0]);
+  });
+});
+
+
+
+app.post('/board_movie/edit/:id', upload.single('img'), (req, res) => { //영화 게시판 수정
+  const { id } = req.params;
+  const { title, movie_status, content } = req.body;
+  const img = req.file ? req.file.filename : req.body.existingImg; // 이미지 교체 시 replace
+
+  const sql = 'UPDATE board_movie SET title = ?, movie_status = ?, img = ?, content = ? WHERE id = ?';
+  connection.query(sql, [title, movie_status, img, content, id], (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    if(req.file){
+      fs.unlink(`${__dirname}/uploads/${req.body.existingImg}`, function(err) {
+       
+        res.status(200).json({ id, title, movie_status, img, content });
+      }) 
+    }
+  });
+});
+
+app.post("/board_movie/post/delete", (req, res) => {//영화게시판 게시글 삭제
+  const { id, img } = req.body;
+  // const value = [id];
+  console.log(req.body)
+  const sqlQuery = "DELETE FROM board_movie WHERE id = ?";
+  connection.query(sqlQuery, id, (err, result) => {
+    if (err) {
+      console.error("에러", err);
+      res.status(500).send("서버에러");
+    } else {
+      fs.unlink(`${__dirname}/uploads/${img}`, function(err) {
+
+        res.json({isDeleted:"true"});
+      })
+    }
+    
+  });
+})
+
+//-----------------------------------//sjh 게시판 글쓰기-----------------------------------
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`); 

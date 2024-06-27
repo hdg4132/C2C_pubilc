@@ -2,14 +2,19 @@
 import star_fill from '../assets/star_fill.png'
 import star_line from '../assets/star_line.png'
 
-const Viewer=()=>{
+const Viewer=({id, title, movie_status, img, content})=>{
     return(
         <div className="Viewer">
             <div className="content_title">
-                <h5>게시글 타이틀이 나타납니다.</h5>
+                <h5><span className={`status ${movie_status==='상영중'?'ing':''}`}>{movie_status}</span>{title}</h5>
             </div>
             <div className="content_con">
-                본문내용
+                <div className='img_wrap'>
+                    <img src={`//localhost:8000/uploads/${img}`}/>
+                </div>
+                <div className='txt_wrap'>
+                    {content}
+                </div>
             </div>
             <div className="view_reply">
                 <div className="reply_tt">

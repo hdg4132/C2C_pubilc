@@ -194,7 +194,8 @@ button.choice {
 /* 결제버튼 수정으로 css변경 hms 06.27 */
 
 button:hover {
-    background-color: #e1b50f;
+    background-color: #FFB800;
+    color:#fff;
 }
 
 .seat.reserved {
