@@ -21,16 +21,21 @@ function LoginPage() {
       });
 
       if (response.data.success) {
-        const { usertype, id, username } = response.data.data[0];
-        console.log("id:", id);
-        console.log("username:", username);
-        console.log("usertype:", usertype);
+        const { usertype, id, username, password, email, address, detailaddress, phonenumber } = response.data.data[0];
 
+        console.log(response.data.data[0])
+        
         const userData = {
-          id: id,
+          userid: id,
           username: username,
+          password: password,
+          address: address,
+          detailaddress: detailaddress,
+          email: email,
+          phonenumber: phonenumber,
           usertype: usertype,
         };
+        
         sessionStorage.setItem("loggedIn", true);
         sessionStorage.setItem("userData", JSON.stringify(userData));
         sessionStorage.setItem("usertype", usertype);
