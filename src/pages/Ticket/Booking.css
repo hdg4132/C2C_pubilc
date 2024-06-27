@@ -1,0 +1,203 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+.container {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+}
+
+.header img {
+    width: 100%;
+    height: auto;
+}
+
+.booking {
+    width: 100%;
+    height: auto;
+    max-width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 auto;
+    border: 2px solid #f1c40f;
+    padding: 20px;
+    background-color: #fff;
+    position: absolute;
+    top: 80%; 
+    left: 50%;
+    transform: translate(-50%, -0%);
+}
+
+.people {
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+}
+
+.people h2 {
+    color: #f1c40f;
+    margin-bottom: 10px;
+}
+
+.people p {
+    margin-bottom: 10px;
+}
+
+.people-choose {
+    display: flex;
+    gap: 10px;
+}
+
+.choice {
+    padding: 10px 20px;
+    border: 2px solid #f1c40f;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.choice.selected {
+    background-color: #f1c40f;
+    color: #fff;
+}
+
+.choice:hover {
+    background-color: #e1b50f;
+}
+
+.seat-selection {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.seat-selection h2 {
+    color: #f1c40f;
+    margin-bottom: 20px;
+}
+
+.screen {
+    background-color: #ccc;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.seats {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: contents;
+}
+
+.seat {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.seat-input {
+    display: none;
+}
+
+.seat.available {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.seat.selected {
+    background-color: #f1c40f;
+}
+
+.seat.unavailable {
+    background-color: #da0707;
+    cursor:not-allowed;
+}
+
+.seat-input:checked + .seat.available {
+    background-color: #f1c40f;
+}
+
+.movie-info {
+    width: 290px;
+    text-align: center;
+    margin-left: 20px; 
+}
+
+.movie-info img {
+    display: block;
+    width: 85%;
+    max-width: 208px;
+    height: 297px;
+    margin-bottom: 20px;
+}
+
+.movie-info .details {
+    text-align: left;
+}
+
+.movie-info .details h3 {
+    margin-bottom: 10px;
+}
+
+.movie-info .details p {
+    height: 16px;
+    margin-bottom: 5px;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+button.choice {
+    width: 70px;
+    height: 80px;
+}
+
+.link-pay {
+    display: inline-block;
+    align-content: center;
+    margin-top: 20px;
+    width: 208px;
+    height: 112px;
+    border: 0px;
+    font-family: 'Pretendard-semibold';
+    font-size: 22px;
+    border-radius: 25px;
+    background-color: #FFB800;
+    color: #FFFFFF;
+} 
+/* 결제버튼 수정으로 css변경 hms 06.27 */
+
+button:hover {
+    background-color: #e1b50f;
+}
+
+.seat.reserved {
+    background-color: red;
+    cursor: not-allowed;
+}

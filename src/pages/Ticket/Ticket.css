@@ -1,0 +1,271 @@
+/* 기본 스타일 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+}
+
+/* 헤더 스타일 */
+.header {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    border-bottom: 3px solid #353030;
+}
+
+.header h2 {
+    font-size: 24px;
+    text-align: left;
+}
+
+/* 콘텐츠 스타일 */
+.content {
+    display: flex;
+    max-width: 1280px;
+    max-height: 400px;
+    margin: 0 auto;
+}
+
+/* 영화 선택 스타일 */
+.movie-selection {
+    width: 397px;
+    max-height: 400px; 
+    overflow-y: scroll;
+}
+
+.movie-selection ul {
+    padding: 20px 0;
+    margin-bottom: 15px;
+    max-height: 80%;
+    overflow-y: hidden;
+    transition: overflow-y 0.3s;
+}
+
+.movie-selection ul:hover {
+    overflow-y: auto;
+}
+
+.movie-selection ul::-webkit-scrollbar {
+    width: 8px;
+}
+
+.movie-selection ul::-webkit-scrollbar-thumb {
+    background-color: #dfe209;
+    border-radius: 4px;
+}
+
+.movie-selection ul::-webkit-scrollbar-thumb:hover {
+    background-color: #5a9954;
+}
+
+.movie-selection ul li {
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.movie-selection li img {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.movie-selection li.selected {
+    border: 2px solid #f1c40f;
+    border-radius: 5px;
+}
+
+.movie-selection li span {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+
+/* 날짜 선택 스타일 */
+.date-selection {
+    width: 190px;
+    background-color: #fffaea;
+    max-height: 400px; 
+    overflow-y: scroll; 
+}
+
+.date-selection ul {
+    padding-top: 15px;
+    padding-left: 15px;
+    max-height: 100%; 
+    overflow-y: hidden;
+    transition: overflow-y 0.3s;
+}
+
+.date-selection ul li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.date-selection ul li.blue-text {
+    color: blue;
+}
+
+.date-selection ul li.red-text {
+    color: red;
+}
+
+.date-selection ul:hover {
+    overflow-y: auto;
+}
+.date-selection ul::-webkit-scrollbar {
+    width: 8px;
+}
+
+.date-selection ul::-webkit-scrollbar-thumb {
+    background-color: #dfe209;
+    border-radius: 4px;
+}
+
+.date-selection ul::-webkit-scrollbar-thumb:hover {
+    background-color: #5a9954;
+}
+/* 시간 선택 스타일 */
+.time-selection {
+    width: 679px;
+}
+
+.time-selection .time-slot {
+    padding-top: 30px;
+    padding-left: 30px;
+    display: flex;
+    gap: 40px;
+}
+
+.time-selection .time-slot li {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    width: 136px;
+    height: 81px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.time-selection .time-slot li.selected {
+    background-color: rgb(0, 255, 191);
+    color: black;
+}
+
+.time-selection .time-slot .time-text {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 선택 버튼 스타일 */
+.choose {
+    text-align: right;
+    padding: 20px;
+}
+
+.choose .select-seat {
+    color: white;
+    font-weight: bold;
+    padding: 20px 40px;
+    background-color: #ffcc00;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 21px;
+    margin-top: 70px;
+    margin-left: 350px;
+}
+
+/* 공통 선택 스타일 */
+.selection {
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+}
+
+.selection h4 {
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+}
+
+/* 선택된 항목 스타일 */
+.selected {
+    background-color: rgb(0, 255, 191);
+    color: black;
+}
+
+ul li:hover {
+    background-color: rgb(0, 255, 191);
+    color: black;
+}
+
+/* 영화 정보 스타일 */
+.movie-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movie-info-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.movie-thumbnail {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.movie-details {
+    text-align: center;
+    color: #666;
+}
+
+.movie-details h2 {
+    font-size: 22px;
+    margin: 10px 0;
+    color: #444;
+}
+
+.movie-details p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+
