@@ -195,8 +195,8 @@ app.delete("/deleteAccount", (req, res) => {
 
 // -----------------------------------240627 kth 회원정보 수정  ---------------------------------
 // 회원 정보 수정 API
-app.put("/updateUserInfo", async (req, res) => {
-  const { username, password, email, address, detailaddress, phonenumber } =
+app.put("/Userinfoupdate", async (req, res) => {
+  const { username, password, address, detailaddress, phonenumber, userid} =
     req.body;
 
   try {
@@ -204,10 +204,10 @@ app.put("/updateUserInfo", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const sql =
-      "UPDATE signup SET username = ?, password = ?, address = ?, detailaddress = ?, phonenumber = ? WHERE email = ?";
+      "UPDATE signup SET username = ?, password = ?, address = ?, detailaddress = ?, phonenumber = ? where id = ?";
     connection.query(
       sql,
-      [username, hashedPassword, address, detailaddress, phonenumber, email],
+      [username, hashedPassword, address, detailaddress, phonenumber, userid],
       (err, result) => {
         if (err) {
           console.error("MySQL에서 데이터 수정 중 오류:", err);
@@ -246,6 +246,14 @@ app.put("/updateUserInfo", async (req, res) => {
 });
 
 // -----------------------------------240627 kth 회원정보 수정  ---------------------------------
+app.get("/getUserInfo", (req, res) => {
+  const userid = req.params
+  const sqlQuery = "Select * from movie.signup where =userid;";
+
+  connection.query(sqlQuery, [userid], (err, result) => {
+    res.send(result)
+  })
+})
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";
   connection.query(sqlQuery, (err, result) => {

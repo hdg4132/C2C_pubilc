@@ -16,17 +16,20 @@ const ProfileEdit = () => {
 
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [userid, setUserid] =  useState();
 
+  useEffect(() => {
+    const userInfo = JSON.parse(sessionStorage.getItem('userData'))
+    setUserid(userInfo.id)
+  }, [])
+ 
   useEffect(() => {
     async function fetchUserData() {
       try {
-        const response = await axios.get("http://localhost:8000/getUserInfo");
+        const response = await axios.get("http://localhost:8000/getUserInfo", {id:userid});
         const userData = response.data; // 예시: 서버에서 받은 사용자 정보
-        setFormValues({
-          username: userData.username,
-          email: userData.email,
-          // 기타 필드들도 동일하게 설정
-        });
+        console.log(userData)
+        // setUserid
       } catch (error) {
         console.error("사용자 정보 불러오기 오류:", error);
       }
@@ -41,12 +44,6 @@ const ProfileEdit = () => {
       [name]: value,
     });
 
-    if (name === "email") {
-      setFormErrors((prevErrors) => ({
-        ...prevErrors,
-        email: "*올바른 이메일을 입력해주세요.",
-      }));
-    }
   };
 
   const validate = (values) => {
@@ -55,11 +52,6 @@ const ProfileEdit = () => {
     if (!values.username) {
       errors.username = "*성함을 입력해 주세요";
     }
-
-    if (!values.email) {
-      errors.email = "*이메일을 입력해 주세요.";
-    }
-  
 
     if (!values.password) {
       errors.password = "*비밀번호를 입력해 주세요.";
@@ -96,7 +88,7 @@ const ProfileEdit = () => {
       setIsSubmit(true);
       try {
         const response = await axios.put(
-          "http://localhost:8000/updateUserInfo",
+          "http://localhost:8000/Userinfoupdate",
           {
             username: formValues.username,
             password: formValues.password,
@@ -104,6 +96,7 @@ const ProfileEdit = () => {
             address: formValues.address,
             detailaddress: formValues.detailaddress,
             phonenumber: formValues.phoneNumber,
+            userid: userid,
           }
         );
         console.log("서버 응답:", response.data);
@@ -155,24 +148,7 @@ const ProfileEdit = () => {
               {formErrors.username && <p>{formErrors.username}</p>}
             </div>
           </div>
-          <div className="signup_form_con">
-            <label htmlFor="email">이메일 주소</label>
-            <div className="mail_input_wrap">
-              <div className="mail_input">
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={formValues.email}
-                    placeholder="이메일 주소를 입력하세요"
-                    onChange={handleChange}
-                  />
-                  {formErrors.email && <p>{formErrors.email}</p>}
-                </div>
-              </div>
-            </div>
-          </div>
+         
           <div className="signup_form_con">
             <label htmlFor="password">비밀번호</label>
             <div>
