@@ -110,31 +110,88 @@ app.post("/signup", async (req, res) => {
 // -----------------------------------240625 kth login 파트 -------------------------------------------------
 
 // 로그인 처리 API
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { email, password, usertype } = req.body;
   console.log(email)
   console.log(password)
 
-  // MySQL 쿼리 실행
-  const sql = `SELECT * FROM user WHERE email = ? AND password = ?`;
-  connection.query(sql, [email, password], (err, results) => {
-    if (err) {
-      console.error('로그인 오류: ' + err.stack);
-      res.status(500).json({ success: false, message: '로그인 중 오류가 발생했습니다.' });
-      return;
-    }
+  try {
+    // 이메일을 사용하여 데이터베이스에서 사용자를 찾습니다.
+    connection.query(
+      "SELECT * FROM signup WHERE email = ?",
+      [email],
+      async (err, result) => {
+        if (err) {
+          console.error("서버에서 에러 발생:", err);
+          res.status(500).send({ success: false, message: "서버 에러 발생" });
+        } else {
+          if (result.length > 0) {  // 사용자가 존재하면
+            const isPasswordMatch = await bcrypt.compare(
+              password,
+              result[0].password
+            );
+            if (isPasswordMatch && usertype == result[0].usertype) {
+              if (!req.session) {
+                req.session = {};
+              }
+              req.session.usertype = result[0].usertype; 
+              req.session.userid = result[0].userid; 
 
-    if (results.length > 0) {
-      // 로그인 성공
-      res.status(200).json({ success: true, data: results });
-    } else {
-      // 로그인 실패
-      res.status(401).json({ success: false, message: '이메일 또는 비밀번호가 잘못되었습니다.' });
-    }
-  });
+              res.send({ success: true, message: "로그인 성공", data: result });
+            } else {
+              res.send({
+                success: false,
+                message: "정보가 일치하지 않습니다.",
+              });
+            }
+          } else {
+            res.send({ success: false, message: "유저 정보가 없습니다." });
+          }
+        }
+      }
+    );
+  } catch (error) {
+    console.error("비밀번호 비교 중 오류:", error);
+    res.status(500).send({ success: false, message: "서버 에러 발생" });
+  }
 });
 
 // -----------------------------------240625 kth login 파트 -------------------------------------------------
+
+
+// -----------------------------------240627 예매내역 호출 ---------------------------------------------------
+// 사용자의 예매 내역을 가져오는 API
+app.get("/orders", (req, res) => {
+  const { userId } = req.query;
+  
+  const sql = "SELECT * FROM orders WHERE userId = ?";
+  connection.query(sql, [userId], (err, results) => {
+      if (err) {
+          console.error('예매 내역 조회 중 오류:', err);
+          return res.status(500).json({ success: false, message: '예매 내역 조회 중 오류가 발생했습니다.' });
+      }
+      return res.status(200).json({ success: true, data: results });
+  });
+});
+// -----------------------------------240627 kth 예매내역 호출 ------------------------------------------------
+
+// -----------------------------------240627 kth 로그인된 계정 탈퇴(삭제) --------------------------------------
+// 사용자 탈퇴(삭제) API
+app.delete("/deleteAccount", (req, res) => {
+  const { userId } = req.body;
+
+  // DELETE 쿼리를 실행하여 사용자 계정 삭제
+  const sql = "DELETE FROM signup WHERE id = ?";
+  connection.query(sql, [userId], (err, result) => {
+    if (err) {
+      console.error('사용자 탈퇴 중 오류:', err);
+      return res.status(500).json({ success: false, message: '사용자 탈퇴 중 오류가 발생했습니다.' });
+    }
+    return res.status(200).json({ success: true, message: '사용자 탈퇴 완료' });
+  });
+});
+
+// -----------------------------------240625 kth kth 로그인된 계정 탈퇴(삭제)  ---------------------------------
 
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";

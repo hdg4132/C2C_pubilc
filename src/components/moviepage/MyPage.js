@@ -1,24 +1,35 @@
-import React, { useState } from "react";
-import Pagination from './Paging.js'
+import React, { useState, useEffect } from "react";
+import Pagination from './Paging.js';
 import TopButton from './TopButton.js';
-import "./MyPage.css"
+import "./MyPage.css";
 
 function MyPage() {
-    const Server_URL = process.env.REACT_APP_Server_Side_Address;
+    const Server_URL = process.env.REACT_APP_Server_Side_Address || 'http://localhost:8000';
     const [currentPage, setCurrentPage] = useState(1);
     const [showPopup, setShowPopup] = useState(false); // 팝업 상태 변수 추가
+    const [orders, setOrders] = useState([]); // 예매내역 상태 변수 추가
     const itemsPerPage = 10;
+
+    useEffect(() => {
+        // userId를 적절히 설정
+        const userId = 1; // 여기에 실제 로그인한 사용자의 ID를 설정해야 합니다.
+        fetch(`${Server_URL}/orders?userId=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    setOrders(data.data);
+                } else {
+                    console.error('orders의 에러:', data.message);
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, [Server_URL]);
 
     const onPageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
 
-    const images = [
-        "/movieImage1.jpg",
-        "/movieImage2.jpg",
-        "/movieImage3.jpg",
-        "/movieImage4.jpg",
-    ];
+    const displayOrders = orders.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
     return (
         <div>
@@ -48,62 +59,37 @@ function MyPage() {
                 <div className="MyTicketing">
                     <h3>나의 예매내역</h3>
                     <div className="post_line" />
-                    <div className="movie_info">
-                        <div className="movieImage" style={{ backgroundImage: `url(${images[currentPage - 1]})` }} />
-                        <div className="info_text">
-                            <p className="movie_text1">영화명이 노출됩니다.</p>
-                            <p className="movie_text2">1관 17:00 | A열 13번</p>
-                            <p className="movie_text3">14,000원 (1매)</p>
+                    {displayOrders.map((order) => (
+                        <div key={order.id}>
+                            <div className="movie_info">
+                                <div className="movieImage" style={{ backgroundImage: `url(${order.imageURL})` }} />
+                                <div className="info_text">
+                                    <p className="movie_text1">{order.orderName}</p>
+                                    <p className="movie_text2">{order.date} {order.time} | {order.seat}</p>
+                                    <p className="movie_text3">{order.seatPrice}원 ({order.totalCount}매)</p>
+                                </div>
+                            </div>
+                            <div className="post_line" />
                         </div>
-                    </div>
-                    <div className="post_line" />
-                    <div className="movie_info">
-                        <div className="movieImage" style={{ backgroundImage: `url(${images[currentPage - 1]})` }} />
-                        <div className="info_text">
-                            <p className="movie_text1">영화명이 노출됩니다.</p>
-                            <p className="movie_text2">1관 17:00 | A열 13번</p>
-                            <p className="movie_text3">14,000원 (1매)</p>
-                        </div>
-                    </div>
-                    <div className="post_line" />
-                    <div className="movie_info">
-                        <div className="movieImage" style={{ backgroundImage: `url(${images[currentPage - 1]})` }} />
-                        <div className="info_text">
-                            <p className="movie_text1">영화명이 노출됩니다.</p>
-                            <p className="movie_text2">1관 17:00 | A열 13번</p>
-                            <p className="movie_text3">14,000원 (1매)</p>
-                        </div>
-                    </div>
-                    <div className="post_line" />
-                    <div className="movie_info">
-                        <div className="movieImage" style={{ backgroundImage: `url(${images[currentPage - 1]})` }} />
-                        <div className="info_text">
-                            <p className="movie_text1">영화명이 노출됩니다.</p>
-                            <p className="movie_text2">1관 17:00 | A열 13번</p>
-                            <p className="movie_text3">14,000원 (1매)</p>
-                        </div>
-                    </div>
-                    <div className="post_line" />
-                    <div>
-                        <Pagination
-                            totalItems={100}
-                            itemsPerPage={itemsPerPage}
-                            onPageChange={onPageChange}
-                        />
-                    </div>
+                    ))}
+                    <Pagination
+                        totalItems={orders.length}
+                        itemsPerPage={itemsPerPage}
+                        onPageChange={onPageChange}
+                    />
                 </div>
             </div>
             <div style={{ height: '1000px' }}>
-             <TopButton />
-           </div>
-           {showPopup && (
-               <div className="popup show">
-                   <p>탈퇴 완료했습니다.</p>
-                   <button onClick={() => setShowPopup(false)}>확인</button>
-               </div>
-           )}
+                <TopButton />
+            </div>
+            {showPopup && (
+                <div className="popup show">
+                    <p>탈퇴 완료했습니다.</p>
+                    <button onClick={() => setShowPopup(false)}>확인</button>
+                </div>
+            )}
         </div>
     );
-};
+}
 
 export default MyPage;
