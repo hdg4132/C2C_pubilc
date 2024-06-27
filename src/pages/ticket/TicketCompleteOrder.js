@@ -10,15 +10,16 @@ const TicketCompleteOrder = () => {
     navigate("/");
   };
 
-  // 구매내역 페이지 이동 핸들러
+  // 마이 페이지 이동 핸들러
   const onClickMyOrderListNavigateHandler = () => {
-    navigate("/myOrderList");
+    navigate("/Mypage");
   };
 
   if (!location.state) {
     // 올바른 접근 방법이 아닐 경우 - navigate를 통해 들어오지 않아 state가 없는경우
     return (
       <div>
+        <div className="completeOrder">
         <header id="header">
 
         </header>
@@ -41,13 +42,14 @@ const TicketCompleteOrder = () => {
             </div>
           </div>
         </div>
+        </div>
       </div>
     );
   } else {
     // 정상적으로 이 경로에 접근한 경우
 
     return (
-      <div>
+      <div className="completeOrder">
         <header id="header"></header>
         <div>
           <div>

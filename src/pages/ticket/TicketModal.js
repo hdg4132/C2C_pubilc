@@ -10,7 +10,6 @@ export const TicketModal = () => {
 
   const Server_URL = process.env.REACT_APP_Server_Side_Address
   const { REACT_APP_PortOne_ChannelKey, REACT_APP_PortOne_Kakao_ChannelKey } = process.env;
-  // const [userInfo, setUserInfo] = useState([]); // 로그인된 사용자 상세 정보를 저장하기 위한 상태값
   const [nameInfo, setNameInfo] = useState(); // input 태그의 이름 정보 상태 저장
   const [phoneNumberInfo, setPhoneNumberInfo] = useState(); // input 태그의 연락처 정보 상태 저장
   const [emailInfo, setEmailInfo] = useState(); // input 태그의 주소 정보 상태 저장
@@ -47,35 +46,25 @@ export const TicketModal = () => {
  
   // localStorage에서 현재 예약중인 영화 데이터를 받아옴
   const movies = JSON.parse(localStorage.getItem("movie"));
-  const moviepic = movies.thumbnail
+
   // 세션 스토리지에서 userInfo를 받아옴
-  // const userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
-  // 추후 유저데이터 입력을위한 useState  
-  var userInfo = {
-    userId: "123456",
-    username: "han",
-    phonenumber: "000-1234-5678",
-    email: "hdg4132@gmail.com",
-    password: "1234",
-  };
+  const userInfo = JSON.parse(sessionStorage.getItem("userData"));
 
   // localStorage에서 티켓 데이터를 받아옴
-  const ticket = JSON.parse(localStorage.getItem("ticket"));
-  console.log(ticket)
-  
+  const ticket = JSON.parse(localStorage.getItem('ticket'));
+  const price = ticket.price;
+
   const [extra, setExtra] = useState(0); // 일반석 개수 저장
   const [normal, setNormal] = useState(0); // 특수석 개수 저장
   const [totalSeat, setTotalSeat] = useState(0); // 총 좌석 개수저장
   // 좌석 정보가 들어오면 seats 변수에 저장
-  const seats = ticket.seat
-
-  // 페이지가 랜더되었을때 seats변수 값을 판별하고 개수를 저장 
+  const seats = ticket.selectedSeats;
+   
   useEffect (() =>{
   const calSeat = () => {
-    var sumExtra = 0
-    var sumNormal = 0
-    seats.forEach((seat)=>{
-
+    var sumExtra = 0;
+    var sumNormal = 0;
+    {seats && seats.map((seat)=>{
       // 좌석 판별 A, B, C열이면 특수석으로 분류하고 개수증가
     if(seat.includes("A")){
       sumExtra += 1
@@ -86,23 +75,21 @@ export const TicketModal = () => {
     } else{
       sumNormal += 1
     }
-
     setExtra(sumExtra)
     setNormal(sumNormal)
     setTotalSeat(sumExtra+sumNormal)
-
-  })}
+  })}}
   calSeat()
-}, [])
+}, [seats])
 
 // 좌석 가격
 let totalTicketPrice = () =>{
   const extraPrice = 5000;
-  let sumprice = ((ticket.price*totalSeat)+(extra*extraPrice));
+  let sumprice = ((price*totalSeat)+(extra*extraPrice));
   return sumprice
 }
 
-// 좌석 가격 ,표시
+// 좌석 가격 자릿수 ,표시
 let priceCal = () => {
   const total = totalTicketPrice()
   const markTotal = `${total}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -142,7 +129,8 @@ let seatList = () => {
   const onClickLoadRecipient = () => {};
 
 // 체크박스 작동시 함수
-  const handleCheck = () => {
+  const handleCheck = (e) => {
+    // e.preventdefault()
     setIsChecked(!isChecked);
   };
 // 체크박스가 체크되면 사용자 데이터를 로컬스토리지에서 읽어와 useState에 넣는다
@@ -167,7 +155,8 @@ let seatList = () => {
   // useEffect용 빈 함수선언
   const onContChecked = () => {};
   // 체크버튼 클릭하면 체크상태 useState에 저장하는 함수
-  const handleContCheck = () => {
+  const handleContCheck = (e) => {
+    // e.preventdefault()
     setContChecked(!contChecked);
   };
   useEffect(() =>{
@@ -187,7 +176,8 @@ let seatList = () => {
   // useEffect용 빈 함수선언
   const onAgreeChecked = () => {};
   // 체크버튼 클릭하면 체크상태 useState에 저장하는 함수
-  const handleAgreeCheck = () => {
+  const handleAgreeCheck = (e) => {
+    // e.preventdefault()
     setAgreeChecked(!agreeChecked);
   };
   useEffect(() =>{
@@ -228,7 +218,7 @@ let seatList = () => {
       String(date.getMinutes()) +
       String(date.getSeconds()) +
       "-" +
-      String(movies[0].id);
+      String(movies.id);
 
     // 서버에 전달할 데이터를 담을 변수 배열 설정
     const reqOrderSheet = [];
@@ -238,22 +228,23 @@ let seatList = () => {
     // 그 요소를 reqOrderSheet 배열에 저장한다.
     seats.forEach((data) => {
       reqOrderSheet.push({
-        date: ticket.date,
-        time: ticket.time,
+        date: ticket.selectedDate,
+        time: ticket.selectedTime,
         seat: data,
-        price: ticket.price,
+        price: price,
         normal: normal,
         extra: extra,
         orderNumber: createOrderNumber,
         userId: userInfo.userId,
-        id: movies[0].id,
+        movieName: movies.name,
+        id: movies.id,
         name: nameInfo,
         emailInfo: emailInfo,
         phoneNumber: phoneNumberInfo,
         totalCount: normal+extra,
         totalAmount: totalTicketPrice(),
         payment: payment,
-        imageURL: movies[0].thumbnail,
+        imageURL: movies.thumbnail,
       });
     });
 
@@ -268,7 +259,7 @@ let seatList = () => {
       paymentType: payment,
       payTotalAmount: totalTicketPrice(),
       orderProduct: ticket,
-      imageURL: movies[0].thumbnail,
+      imageURL: movies.thumbnail,
     };
 
     // 서버에 엔드포인트 "/reqOrder" 로 POST 요청,
@@ -280,21 +271,8 @@ let seatList = () => {
       })
       // 서버에서 성공적으로 실행되었다면, 다음 then() 코드가 실행된다.
       .then(() => {
-        const getTicketList = JSON.parse(localStorage.getItem("ticket"));
-        const orderProductCode = [];
-
-        ticket.forEach((product) => orderProductCode.push(product.id));
-
-        const updateTicketList = getTicketList.filter((product) => {
-          if (orderProductCode.indexOf(product.id) < 0) return product;
-        });
-
-        // setTicketlength(updateTicketList.length); // 장바구니 수량 업데이트
-
-        localStorage.setItem("ticket", JSON.stringify(updateTicketList));
-        sessionStorage.removeItem("selectCart");
+        localStorage.removeItem("ticket");
         navigate("/completeOrder", { state: { orderData: completeOrderData } });
-      
       });
     
   };
@@ -448,16 +426,17 @@ let seatList = () => {
           </div>
           <div className="modal-side-right">
             {/* 영화 이미지 출력 */}
-            <img src={moviepic}></img>
+            <img src={movies.thumbnail}></img>
             <div className="Summary">
                 {/* 티켓정보 출력 */}
-              <h3>{`${movies[0].name}`}</h3>
-              <p className="date">{`${ticket[0].date}`} ({getDayOfWeek(ticket[0].date)})</p>
-              <p className="time">{`${ticket[0].time}`}</p>
-              <p className="seat">{seatList()}</p>
+              <h3>{`${movies.name}`}</h3>
+              <p className="date">{`${ticket.selectedDate}`} ({getDayOfWeek(ticket.selectedDate)})</p> 
+                                                              {/* util의 요일구하는 함수 getDayOfWeek를 불러와 요일표시 */}
+              <p className="time">{`${ticket.selectedTime}`}</p>
+              <p className="seat-list">{seatList()}</p>
             </div>
-            <div className="price">
-            <span className="seat"> 
+            <div className="price-check">
+            <span className="seat-check"> 
               {/* 좌석등급에 따른 매수 출력 */}
               <p>일반석 {normal}매</p>
               <p>특수석 {extra}매</p>
@@ -482,7 +461,7 @@ let seatList = () => {
                 // 결제정보를 위한 티켓props
                 ticket={ticket}
                 // 영화이름
-                name={movies[0].name}
+                name={movies.name}
                 // 버튼 클릭시 작동함수
                 submitOrdersheet={submitOrdersheet}
               ></MultiPayment>

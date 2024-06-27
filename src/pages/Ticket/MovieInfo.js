@@ -16,15 +16,16 @@ const MovieInfo = ({ movie, selectedMovie, selectedDate, selectedTime, selectedS
   const handlePayClick = async () => {
     if (selectedSeats.length > 0) { // 선택한 좌석이 있는 경우
       try {
+        const price = 14000;
         const formattedDate = convertDate(selectedDate); // 날짜 형식 변환
         const reservationData = { // 예약 데이터 생성
           selectedMovie,
           selectedDate: formattedDate,
           selectedTime,
-          selectedSeats
+          selectedSeats,
+          price
         };
-        localStorage.setItem('ticket', JSON.stringify(reservationData))
-        navigate('/ticket/modal', { state: { background: location } }); // 결제 페이지로 이동
+        localStorage.setItem('ticket', JSON.stringify(reservationData)); // 티켓을 로컬스토리지에 저장
       } catch (error) {
         console.error('Error making reservation:', error); // 에러 로그 출력
       }
@@ -55,7 +56,9 @@ const MovieInfo = ({ movie, selectedMovie, selectedDate, selectedTime, selectedS
         <span>총 금액</span>
         <span>{selectedSeats.length * 14000} 원</span> {/* 선택된 좌석 수에 따른 총 금액 계산 */}
       </div>
-      <button onClick={handlePayClick}>결제하기</button> {/* 결제 버튼 */}
+      <Link to="/seat-booking/modal" state={{ background: location }} onClick={handlePayClick} className="link-pay">
+      결제하기 <Outlet />
+      </Link> {/* 결제 버튼 */}
     </div>
   );
 };

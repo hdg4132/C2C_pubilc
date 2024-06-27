@@ -161,6 +161,7 @@
 }
 
 .movie-info .details p {
+    height: 16px;
     margin-bottom: 5px;
 }
 
@@ -177,18 +178,20 @@ button.choice {
     height: 80px;
 }
 
-button {
+.link-pay {
+    display: inline-block;
+    align-content: center;
+    margin-top: 20px;
     width: 208px;
     height: 112px;
-    padding: 10px;
-    background-color: #f1c40f;
-    border: none;
-    color: #fff;
-    font-size: 1.2em;
-    cursor: pointer;
-    margin-top: 20px;
-    border-radius: 5px;
-}
+    border: 0px;
+    font-family: 'Pretendard-semibold';
+    font-size: 22px;
+    border-radius: 25px;
+    background-color: #FFB800;
+    color: #FFFFFF;
+} 
+/* 결제버튼 수정으로 css변경 hms 06.27 */
 
 button:hover {
     background-color: #e1b50f;
