@@ -21,13 +21,13 @@ function LoginPage() {
       });
 
       if (response.data.success) {
-        const { usertype, userId, username } = response.data.data[0];
-        console.log("userid:", userId);
+        const { usertype, id, username } = response.data.data[0];
+        console.log("id:", id);
         console.log("username:", username);
         console.log("usertype:", usertype);
 
         const userData = {
-          userid: userId,
+          id: id,
           username: username,
           usertype: usertype,
         };

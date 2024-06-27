@@ -1,9 +1,8 @@
 
 import "./reset.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from "./pages/signup/Signup.js";
+import Signup from "./components/Signup.js";
 import Main from "./components/Main.js";
-import { TicketBack } from './pages/ticket/TicketBack';
 import { TicketModal} from './pages/ticket/TicketModal';
 import TicketCompleteOrder from './pages/ticket/TicketCompleteOrder';
 import Login from "./components/Logins/Login.js";
@@ -59,6 +58,7 @@ const App = () => {
 
   return ( // 화면에 보여줄 내용을 작성하는 부분입니다.
     <div className="container"> 
+import Userinfoupdate from "./components/Userinfoupdate/Userinfoupdate.js";
 
 
 
@@ -99,10 +99,9 @@ const App = () => {
           <Route path="/completeOrder" element={<TicketCompleteOrder />} /> {/* 결제완료페이지 hms */}
           <Route path="/Login" element={<Login />}></Route> {/* 로그인 - kth */}
           <Route path="/Mypage" element={<Mypage />}></Route> {/* 마이페이지 - kth */}
-      </Routes>
-
-    </div>
-
+          <Route path="/userinfoupdate" element={<Userinfoupdate />}></Route> {/* 회원정보 수정 - kth */}
+        </Routes>
+      </div>
   );
 };
 
