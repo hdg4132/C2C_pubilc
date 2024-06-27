@@ -302,7 +302,7 @@ app.post('/login', (req, res) => {
   try {
     // 이메일을 사용하여 데이터베이스에서 사용자를 찾습니다.
     connection.query(
-      "SELECT * FROM user WHERE email = ?",
+      "SELECT * FROM signup WHERE email = ?",
       [email],
       async (err, result) => {
         if (err) {
@@ -319,7 +319,7 @@ app.post('/login', (req, res) => {
                 req.session = {};
               }
               req.session.usertype = result[0].usertype; 
-              req.session.userid = result[0].userid; 
+              req.session.userid = result[0].id; 
 
               res.send({ success: true, message: "로그인 성공", data: result });
             } else {
@@ -409,6 +409,11 @@ app.post("/reqOrder", async (req, res, next) => {
               </div>
               <div className="complete-body">
                 <h3>예매가 완료 되셨습니다</h3>
+                <img src="${article.imageURL}" 
+                  width: 208px;
+                  height: 297px; 
+                  alt="포스터">
+                <h2 style="font-size:25px; color:blue;">${article.movieName}</h2>
                 <p> 예매 감사드립니다 <p style="font-size:20px; color:blue;">${article.date}일 ${article.time}시</p></p>
                 <p> <p style="font-size:20px; color:blue;">${article.seat}석</p> 예매되셨습니다</p>
               </div>
