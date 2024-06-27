@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
+import { Outlet } from 'react-router-dom';
 
 // 날짜 문자열에서 날짜 부분만 추출하는 함수
 const convertDate = (dateString) => {

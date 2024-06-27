@@ -1,13 +1,14 @@
 
 import "./reset.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Signup from "./components/Signup.js";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import Signup from "./pages/signup/Signup.js";
 import Main from "./components/Main.js";
-import { TicketModal} from './pages/ticket/TicketModal';
-import TicketCompleteOrder from './pages/ticket/TicketCompleteOrder';
+import { TicketModal} from './pages/Ticket/TicketModal';
+import TicketCompleteOrder from './pages/Ticket/TicketCompleteOrder';
 import Login from "./components/Logins/Login.js";
 import Mypage from "./components/moviepage/MyPage.js";
 import React, { useState, useEffect } from 'react'; // React에서 필요한 기능들을 가져옴
+import Userinfoupdate from "./components/Userinfoupdate/Userinfoupdate.js";
 
 import axios from 'axios'; // 서버에 요청을 보내는 도구를 가져옴
 import QuickBooking from './pages/./Ticket/QuickBooking'; // 빠른 예약 기능을 하는 컴포넌트를 가져옴
@@ -58,10 +59,9 @@ const App = () => {
 
   return ( // 화면에 보여줄 내용을 작성하는 부분입니다.
     <div className="container"> 
-import Userinfoupdate from "./components/Userinfoupdate/Userinfoupdate.js";
 
 
-
+      
       <Routes>  
         {/*-------------------kjh-------------------------*/}
 
