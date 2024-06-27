@@ -15,6 +15,16 @@ function MyPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const userInfo = JSON.parse(sessionStorage.getItem('userData'))
+        if (userInfo != null){
+
+        } else {
+          alert("로그인을 하셔야 합니다")
+          navigate("/")
+        }
+      }, [])
+
+    useEffect(() => {
         fetchOrders();
     }, []); // 페이지 로드 시 예매내역을 불러오도록 변경
 

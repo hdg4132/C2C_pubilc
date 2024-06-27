@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Userinfoupdate.css";
 
 const ProfileEdit = () => {
+  const navigate = useNavigate()
   const [formValues, setFormValues] = useState({
     username: "",
     email: "",
@@ -20,7 +21,11 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     const userInfo = JSON.parse(sessionStorage.getItem('userData'))
+    if (userInfo != null){
     setUserid(userInfo.id)
+    } else {
+      navigate("/")
+    }
   }, [])
  
   useEffect(() => {
@@ -222,7 +227,7 @@ const ProfileEdit = () => {
             </div>
           </div>
           <div id="btn_signup">
-            <Link to="/" type="reset" className="btn_back">
+            <Link to="/mypage" type="reset" className="btn_back">
               뒤로가기
             </Link>
             <button type="submit" className="btn_signup" disabled={isSubmit}>
