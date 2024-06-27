@@ -57,6 +57,7 @@ export const TicketModal = () => {
   const [extra, setExtra] = useState(0); // 일반석 개수 저장
   const [normal, setNormal] = useState(0); // 특수석 개수 저장
   const [totalSeat, setTotalSeat] = useState(0); // 총 좌석 개수저장
+  
   // 좌석 정보가 들어오면 seats 변수에 저장
   const seats = ticket.selectedSeats;
    
@@ -65,7 +66,7 @@ export const TicketModal = () => {
     var sumExtra = 0;
     var sumNormal = 0;
     {seats && seats.map((seat)=>{
-      // 좌석 판별 A, B, C열이면 특수석으로 분류하고 개수증가
+            // 좌석 판별 A, B, C열이면 특수석으로 분류하고 개수증가
     if(seat.includes("A")){
       sumExtra += 1
     } else if(seat.includes("B")){
@@ -80,7 +81,7 @@ export const TicketModal = () => {
     setTotalSeat(sumExtra+sumNormal)
   })}}
   calSeat()
-}, [seats])
+}, [])
 
 // 좌석 가격
 let totalTicketPrice = () =>{
@@ -228,38 +229,30 @@ let seatList = () => {
     // 그 요소를 reqOrderSheet 배열에 저장한다.
     seats.forEach((data) => {
       reqOrderSheet.push({
-        date: ticket.selectedDate,
-        time: ticket.selectedTime,
-        seat: data,
-        price: price,
-        normal: normal,
-        extra: extra,
-        orderNumber: createOrderNumber,
-        userId: userInfo.userId,
-        movieName: movies.name,
-        id: movies.id,
-        name: nameInfo,
-        emailInfo: emailInfo,
-        phoneNumber: phoneNumberInfo,
-        totalCount: normal+extra,
-        totalAmount: totalTicketPrice(),
-        payment: payment,
-        imageURL: movies.thumbnail,
+        date: ticket.selectedDate,            // 예매 일자
+        time: ticket.selectedTime,            // 예매 시간
+        seat: data,                           // 예매 좌석
+        price: price,                         // 티켓 가격
+        normal: normal,                       // 일반석 개수
+        extra: extra,                         // 프리미엄석 개수
+        orderNumber: createOrderNumber,       // 주문번호
+        userId: userInfo.userId,              // 사용자의 고유 id
+        movieName: movies.name,               // 영화명
+        id: movies.id,                        // 영화 고유번호
+        name: nameInfo,                       // 사용자 이름
+        emailInfo: emailInfo,                 // 사용자 이메일
+        phoneNumber: phoneNumberInfo,         // 사용자 전화번호
+        totalCount: normal+extra,             // 좌석개수
+        totalAmount: totalTicketPrice(),      // 티켓 총가격
+        payment: payment,                     // 지불방법
+        imageURL: movies.thumbnail,           // 영화 이미지URL
       });
     });
 
     console.log(reqOrderSheet)
-    // completeOrder에서 제공할 data모음 
+    // completeOrder state용 데이터
     const completeOrderData = {
-      orderNumber: createOrderNumber,
       deliveryMovieName: movies.name,
-      deliveryDestName: nameInfo,
-      deliveryDestPhone: phoneNumberInfo,
-      deliveryDestEmail: emailInfo,
-      paymentType: payment,
-      payTotalAmount: totalTicketPrice(),
-      orderProduct: ticket,
-      imageURL: movies.thumbnail,
     };
 
     // 서버에 엔드포인트 "/reqOrder" 로 POST 요청,
@@ -271,7 +264,8 @@ let seatList = () => {
       })
       // 서버에서 성공적으로 실행되었다면, 다음 then() 코드가 실행된다.
       .then(() => {
-        localStorage.removeItem("ticket");
+        const removeTicket = null;
+        localStorage.setItem("ticket", removeTicket);
         navigate("/completeOrder", { state: { orderData: completeOrderData } });
       });
     

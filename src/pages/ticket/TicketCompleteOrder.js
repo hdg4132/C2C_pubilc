@@ -8,6 +8,7 @@ const TicketCompleteOrder = () => {
   // 메인 || 샵 이동 핸들러
   const onClickShopNavigateHandler = () => {
     navigate("/");
+    window.location.reload()
   };
 
   // 마이 페이지 이동 핸들러
