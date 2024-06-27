@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Pagination from './Paging.js';
 import TopButton from './TopButton.js';
 import "./MyPage.css";
@@ -9,24 +10,53 @@ function MyPage() {
     const [showPopup, setShowPopup] = useState(false); // 팝업 상태 변수 추가
     const [orders, setOrders] = useState([]); // 예매내역 상태 변수 추가
     const itemsPerPage = 10;
+    const userId = 1; // 실제 로그인한 사용자의 ID로 설정해야 합니다.
 
     useEffect(() => {
-        // userId를 적절히 설정
-        const userId = 1; // 여기에 실제 로그인한 사용자의 ID를 설정해야 합니다.
-        fetch(`${Server_URL}/orders?userId=${userId}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    setOrders(data.data);
-                } else {
-                    console.error('orders의 에러:', data.message);
-                }
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, [Server_URL]);
+        fetchOrders();
+    }, []); // 페이지 로드 시 예매내역을 불러오도록 변경
+
+    const fetchOrders = async () => {
+        try {
+            const response = await axios.get(`${Server_URL}/orders?userId=${userId}`);
+            if (response.data.success) {
+                setOrders(response.data.data);
+            } else {
+                console.error('에러 orders:', response.data.message);
+            }
+        } catch (error) {
+            console.error('에러 data:', error);
+        }
+    };
 
     const onPageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
+    };
+
+    const handleDeleteAccount = async () => {
+        const userData = JSON.parse(sessionStorage.getItem("userData"));
+        if (!userData) {
+            alert("로그인이 필요합니다.");
+            return;
+        }
+
+        try {
+            const response = await axios.delete(`${Server_URL}/deleteAccount`, {
+                data: { userId: userData.id },
+            });
+
+            if (response.data.success) {
+                setShowPopup(true);
+                sessionStorage.clear(); // 세션 정보 초기화
+            } else {
+                alert("사용자 탈퇴에 실패하였습니다.");
+            }
+        } catch (error) {
+            console.error("사용자 탈퇴 오류:", error);
+            alert("사용자 탈퇴 중 오류가 발생하였습니다.");
+        } finally {
+			setShowPopup(true);
+        }
     };
 
     const displayOrders = orders.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -51,7 +81,7 @@ function MyPage() {
                             <li className="sidebox_text">나의 예매내역</li>
                             <li className="sidebox_text">회원정보수정</li>
                             <li className="sidebox_text">
-                                <button className="sidebox_quitbutton" onClick={() => setShowPopup(true)}>탈퇴하기</button>
+                                <button className="sidebox_quitbutton" onClick={handleDeleteAccount}>탈퇴하기</button>
                             </li>
                         </ul>
                     </div>
