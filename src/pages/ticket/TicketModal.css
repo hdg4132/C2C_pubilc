@@ -1,405 +1,405 @@
 /* ----------------------------------------------------------------//2024-06-27 hms-------------------------------------------------------------------- */
 .App {
-  text-align: center;
-}
+    text-align: center;
+  }
 
-/* 웹 폰트 불러오기 */
+  /* 웹 폰트 불러오기 */
 @font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Pretendard-bold';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Pretendard-semibold';
-  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
+    font-family: 'Pretendard-bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
 }
 
-/* 모달용 css */
-
-.modalDiv {
-  margin: 0;
-  padding: 0;
-  font-family: 'Pretendard-Regular';
-  width: 150vw;
-  height: 150vh;
-  position: absolute;
-  top: -25vh;
-  left: -40vw;
-  background-color: rgba(91, 112, 131, 0.4);
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@font-face {
+    font-family: 'Pretendard-semibold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
 }
 
-.modalDiv p{
-  margin: 0;
-  padding: 0;
-}
+  /* 모달용 css */
 
-.modalDiv h3{
-  margin: 0;
-  padding: 0;
-}
+  .modalDiv {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard-Regular';
+    width: 151vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: -38vw;
+    background-color: rgba(91, 112, 131, 0.4);
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.modal {
-  width: 1280px;
-  height: 870px;
-  background-color: white;
-  border-radius: 30px;
-}
+  .modalDiv p{
+    margin: 0;
+    padding: 0;
+  }
 
-/* 모달 내부 커서모양 조정 */
-.modal:hover{
-  cursor: default;
-}
+  .modalDiv h3{
+    margin: 0;
+    padding: 0;
+  }
 
-.modal:active{
-  color:initial;
-}
+  .modal {
+    width: 1280px;
+    height: 870px;
+    background-color: white;
+    border-radius: 30px;
+  }
 
-/* 모달 윗부분 css */
-.modal-head{
-  font-family: 'Pretendard-bold';
-  margin: 0;
-  padding: auto 0;
-  width: 100%;
-  height: 110px;
-  background-color: #FFB800;
-  color: #FFFFFF;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  border-bottom-left-radius: 0;
-  border-bottom-left-radius: 0;
-  display: flex;
-  align-items: center;
-}
+  /* 모달 내부 커서모양 조정 */
+  .modal:hover{
+    cursor: default;
+  }
 
-.modal-head h3{
-  width: 100%;
-  font-size: 30px;
-  margin: 0;
-  padding: 0 45px;
-  text-align: left;
-}
+  .modal:active{
+    color:initial;
+  }
 
-/* 모달 바디 css */
-.modal-body{
-  margin: 0;
-  padding: 0;
-  display: flex;
+  /* 모달 윗부분 css */
+  .modal-head{
+    font-family: 'Pretendard-bold';
+    margin: 0;
+    padding: auto 0;
+    width: 100%;
+    height: 110px;
+    background-color: #FFB800;
+    color: #FFFFFF;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .modal-head h3{
+    width: 100%;
+    font-size: 30px;
+    margin: 0;
+    padding: 0 45px;
+    text-align: left;
+  }
+
+  /* 모달 바디 css */
+  .modal-body{
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
 /* 모달 바디 좌측 */
 .modal-side-left{
-  margin: 0;
-  padding: 0;
-  flex-basis: 290px;
-  display: flex;
-  align-items: baseline;
-  border-right: 1px solid #DDDDDD;
+    margin: 0;
+    padding: 0;
+    flex-basis: 290px;
+    display: flex;
+    align-items: baseline;
+    border-right: 1px solid #DDDDDD;
 
 }
 
 .modal-left-head{
-  font-family: 'Pretendard-semibold';
-  font-size: 20px;
-  margin-top: 33px;
-  margin-left: 30px;
+    font-family: 'Pretendard-semibold';
+    font-size: 20px;
+    margin-top: 33px;
+    margin-left: 30px;
 }
 
 .modal-left-body{
-  font-family: 'Pretendard-Regular';
-  font-size: 14px;
-  color: #999999;
-  margin-top: 33px;
-  margin-left: 15px;
+    font-family: 'Pretendard-Regular';
+    font-size: 14px;
+    color: #999999;
+    margin-top: 33px;
+    margin-left: 15px;
 }
 
 /* 모달 바디 중앙부 */
 .modal-mid{
-  width: 670px;
-  height: 764px;
-  margin-left: 30px;
+    width: 670px;
+    height: 764px;
+    margin-left: 30px;
 }
 
 .mid-head{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-  margin-bottom: 33px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 33px;
 }
 
 .mid-head h3{
-font-size: 20px;
+  font-size: 20px;
 }
 
 /* 회원 정보 자동입력창 버튼 css */
 .mid-head input[type="checkbox"]{
-display: none;
+  display: none;
 }
 
 .mid-head label{
-margin-right: 9px;
-align-content: center;
-width: 120px;
-height: 20px;
-background-image: url(../../assets/checkbox.png);
-background-repeat: no-repeat;
-background-position-y: 2px;
+  margin-right: 9px;
+  align-content: center;
+  width: 120px;
+  height: 20px;
+  background-image: url(../../assets/checkbox.png);
+  background-repeat: no-repeat;
+  background-position-y: 2px;
 }
 
 .mid-head label:hover{
-background-image: url(../../assets/checkbox\ hover.png);
-background-repeat: no-repeat;
-background-position-y: 2px;
+  background-image: url(../../assets/checkbox\ hover.png);
+  background-repeat: no-repeat;
+  background-position-y: 2px;
 }
 
 #check:checked+label{
-background-image: url(../../assets/checked.jpg);
-background-repeat: no-repeat;
-background-position-y: 2px;
+  background-image: url(../../assets/checked.jpg);
+  background-repeat: no-repeat;
+  background-position-y: 2px;
 }
 
 /* 회원정보 입력확인 버튼 css */
 .personal-check input{
-padding-left: 15px;
-width: 530px;
-height: 30px;
-border: 1px solid #AAAAAA;
-/* margin-bottom: 20px; */
+  padding-left: 15px;
+  width: 530px;
+  height: 30px;
+  border: 1px solid #AAAAAA;
+  /* margin-bottom: 20px; */
 }
 
 .modal-mid .check-button{
-text-align: right;
-margin-right: 29px;
+  text-align: right;
+  margin-right: 29px;
 }
 
 .modal-mid .usePointSheet{
-width: 137px;
-height: 37px;
-background-color: #FFB800;
-color: #FFFFFF;
-font-size: 15px;
-border-radius: 5px;
-border: none;
+  width: 137px;
+  height: 37px;
+  background-color: #FFB800;
+  color: #FFFFFF;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
 }
 
 .modal-mid tr{
-width: 640px;
-height: 30px;
-margin-bottom: 2px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 20px;
+  width: 640px;
+  height: 30px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 /* 결제수단 버튼 css */
 .multipay{
-width: 100%;
-height: 164px;
-margin-top: 30px;
-border-top: 1px solid #CCCCCC;
-border-bottom: 1px solid #CCCCCC;
+  width: 100%;
+  height: 164px;
+  margin-top: 30px;
+  border-top: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
 }
 .multipay h3{
-text-align: left;
-margin-top: 25px;
-margin-bottom: 28px;
+  text-align: left;
+  margin-top: 25px;
+  margin-bottom: 28px;
 }
 
 .multipay form{
-display: flex;
+  display: flex;
 }
 
 .multipay label{
-display: block;
-align-content: center;
-color: #999999;
-margin-right: 15px;
-font-size: 15px;
-width: 120px;
-height: 60px;
-border: 2px solid #999999;
-border-radius: 5px;
-margin-bottom: 31px;
+  display: block;
+  align-content: center;
+  color: #999999;
+  margin-right: 15px;
+  font-size: 15px;
+  width: 120px;
+  height: 60px;
+  border: 2px solid #999999;
+  border-radius: 5px;
+  margin-bottom: 31px;
 }
 
 .multipay label:hover{
-border: 2px solid #FFB800;
+  border: 2px solid #FFB800;
 }
 
 .multipay input[type="radio"]{
-display: none;
+  display: none;
 }
 
 .multipay input[type="radio"]:checked+label{
-border: 2px solid #FFB800;
-color: #FFB800;
+  border: 2px solid #FFB800;
+  color: #FFB800;
 }
 
 /* 약관 및 정보제공동의 체크 css */
 .contract{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .contract h3{
-margin-top: 30px;
+  margin-top: 30px;
 }
 
 .contract input[type="checkbox"]{
-display: none;
+  display: none;
 }
 
 .contract label{
-padding: 3px;
-margin-top: 14px;
-margin-bottom: 18px;
-background-image: url(../../assets/checkbox.png);
-background-repeat: no-repeat;
-text-align:left;
-background-position-y: 2px;
+  padding: 3px;
+  margin-top: 14px;
+  margin-bottom: 18px;
+  background-image: url(../../assets/checkbox.png);
+  background-repeat: no-repeat;
+  text-align:left;
+  background-position-y: 2px;
 }
 
 .contract label:hover{
-background-image: url(../../assets/checkbox\ hover.png);
-background-repeat: no-repeat;
-background-position-y: 2px;
+  background-image: url(../../assets/checkbox\ hover.png);
+  background-repeat: no-repeat;
+  background-position-y: 2px;
 }
 
 #이용약관:checked+label{
-background-image: url(../../assets/checked.jpg);
-background-repeat: no-repeat;
-background-position-y: 2px;
+  background-image: url(../../assets/checked.jpg);
+  background-repeat: no-repeat;
+  background-position-y: 2px;
 }
 #정보제공동의:checked+label{
-background-image: url(../../assets/checked.jpg);
-background-repeat: no-repeat;
-background-position-y: 2px;
+  background-image: url(../../assets/checked.jpg);
+  background-repeat: no-repeat;
+  background-position-y: 2px;
 }
 
 .contract label span{
-display: block;
-margin-left: 20px;
+  display: block;
+  margin-left: 20px;
 }
 
 /* 모달 바디 우측 */
 .modal-side-right{
-width: 290px;
-text-align: center;
+  width: 290px;
+  text-align: center;
 }
 
 .modal-side-right img{
-margin: 0 auto;
-margin-top: 30px;
-width: 208px;
-height: 297px;
-
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 208px;
+  height: 297px;
+  
 }
 
 /* 일자, 시간, 좌석요약 */
 .Summary{
-margin-left: 41px;
-margin-top: 20px;
-text-align: left;
+  margin-left: 41px;
+  margin-top: 20px;
+  text-align: left;
 }
 
 .Summary p{
-line-height: 25px;
-font-size: 14px;
-color: #333333;
+  line-height: 25px;
+  font-size: 14px;
+  color: #333333;
 }
 
 .Summary .time{
-color: #666666;
+  color: #666666;
 }
 
 .Summary .seat-list{
-color: #FFB800;
+  color: #FFB800;
 }
 
 /* 가격정보 css */
 .price-check{
-margin-top: 41px;
+  margin-top: 41px;
 }
 
 .price-check .seat-check{
-margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .price-check p{
-color: #666666;
-font-size: 14px;
-text-align: right;
-margin-right: 41px;
-line-height: 25px;
+  color: #666666;
+  font-size: 14px;
+  text-align: right;
+  margin-right: 41px;
+  line-height: 25px;
 }
 
 .price-check h3{
-color: #999999;
-font-size: 14px;
+  color: #999999;
+  font-size: 14px;
 }
 
 .price-check .total-price{
-display: flex;
-justify-content: space-between;
-align-items: baseline;
-margin: 0 41px;
-margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 41px;
+  margin-top: 15px;
 }
 
 .price-check span .priceCal{
-font-size: 30px;
-color: #FFB800;
+  font-size: 30px;
+  color: #FFB800;
 }
 
 /* 결제버튼 css */
 .payment input{
-/* display: none; */
-margin-top: 20px;
-width: 208px;
-height: 112px;
-border: 0px;
-font-family: 'Pretendard-semibold';
-font-size: 22px;
-border-radius: 25px;
-background-color: #FFB800;
-color: #FFFFFF;
+  /* display: none; */
+  margin-top: 20px;
+  width: 208px;
+  height: 112px;
+  border: 0px;
+  font-family: 'Pretendard-semibold';
+  font-size: 22px;
+  border-radius: 25px;
+  background-color: #FFB800;
+  color: #FFFFFF;
 }
 
 /* 결제버튼 비활성화시 */
 .payment input:disabled{
-background-color: #999999;
+  background-color: #999999;
 }
 
 /* 결제버튼 입력체크전 노출안되도록 css설정 */
 .orderersheet_display_open{
-display: inline-block;
+  display: inline-block;
 }
 
 .orderersheet_display_close{
-display: none;
+  display: none;
 }
 
 /* ----------------------------------------------------------------//2024-06-12 hms-------------------------------------------------------------------- */
 
-label{
-color: #666666;
-font-size: 12px;
+.modalDiv label{
+  color: #666666;
+  font-size: 12px;
 }

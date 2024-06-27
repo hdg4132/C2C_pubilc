@@ -95,7 +95,7 @@ const MultiPayment = ({
   // 좌석 가격
   let totalTicketPrice = () =>{
     const extraPrice = 5000;
-    let sumprice = ((price*totalSeat)+(extra*extraPrice));
+    let sumprice = ((ticket.price*totalSeat)+(extra*extraPrice));
     return sumprice
   }
 
