@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Pagination from './Paging.js';
 import TopButton from './TopButton.js';
+import { useNavigate } from "react-router-dom";
 import "./MyPage.css";
 
 function MyPage() {
@@ -11,6 +12,7 @@ function MyPage() {
     const [orders, setOrders] = useState([]); // 예매내역 상태 변수 추가
     const itemsPerPage = 10;
     const userId = 1; // 실제 로그인한 사용자의 ID로 설정해야 합니다.
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchOrders();
@@ -46,17 +48,20 @@ function MyPage() {
             });
 
             if (response.data.success) {
-                setShowPopup(true);
-                sessionStorage.clear(); // 세션 정보 초기화
+                setShowPopup(true); // 팝업 보이기
             } else {
                 alert("사용자 탈퇴에 실패하였습니다.");
             }
         } catch (error) {
             console.error("사용자 탈퇴 오류:", error);
             alert("사용자 탈퇴 중 오류가 발생하였습니다.");
-        } finally {
-			setShowPopup(true);
         }
+    };
+
+    const handleConfirm = () => {
+        setShowPopup(false); // 팝업 숨기기
+        sessionStorage.clear(); // 세션 정보 초기화
+        navigate("/login"); // 로그인 페이지로 이동
     };
 
     const displayOrders = orders.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -114,8 +119,8 @@ function MyPage() {
             </div>
             {showPopup && (
                 <div className="popup show">
-                    <p>탈퇴 완료했습니다.</p>
-                    <button onClick={() => setShowPopup(false)}>확인</button>
+                    <p>회원탈퇴 완료했습니다.</p>
+                    <button onClick={handleConfirm}>확인</button>
                 </div>
             )}
         </div>
