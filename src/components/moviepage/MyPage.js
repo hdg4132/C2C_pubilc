@@ -84,7 +84,9 @@ function MyPage() {
                     <div className="sidebox">
                         <ul className="sidebox_List">
                             <li className="sidebox_text">나의 예매내역</li>
-                            <li className="sidebox_text">회원정보수정</li>
+                            <li className="sidebox_text">
+                                <button className="sidebox_quitbutton" onClick={() => navigate("/Userinfoupdate")}>회원정보 수정</button>
+                                </li>
                             <li className="sidebox_text">
                                 <button className="sidebox_quitbutton" onClick={handleDeleteAccount}>탈퇴하기</button>
                             </li>

@@ -191,8 +191,61 @@ app.delete("/deleteAccount", (req, res) => {
   });
 });
 
-// -----------------------------------240625 kth kth 로그인된 계정 탈퇴(삭제)  ---------------------------------
+// -----------------------------------240627 kth 로그인된 계정 탈퇴(삭제)  ---------------------------------
 
+// -----------------------------------240627 kth 회원정보 수정  ---------------------------------
+// 회원 정보 수정 API
+app.put("/updateUserInfo", async (req, res) => {
+  const { username, password, email, address, detailaddress, phonenumber } =
+    req.body;
+
+  try {
+    // 비밀번호 암호화
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const sql =
+      "UPDATE signup SET username = ?, password = ?, address = ?, detailaddress = ?, phonenumber = ? WHERE email = ?";
+    connection.query(
+      sql,
+      [username, hashedPassword, address, detailaddress, phonenumber, email],
+      (err, result) => {
+        if (err) {
+          console.error("MySQL에서 데이터 수정 중 오류:", err);
+          return res.status(500).json({
+            success: false,
+            message: "회원 정보 수정 중 오류가 발생했습니다.",
+            error: err.message,
+          });
+        }
+
+        if (result.affectedRows > 0) {
+          // 수정 성공
+          console.log("사용자 정보가 성공적으로 수정되었습니다.");
+          return res.status(200).json({
+            success: true,
+            message: "사용자 정보가 성공적으로 수정되었습니다.",
+          });
+        } else {
+          // 이메일에 해당하는 사용자가 없는 경우
+          console.log("해당 이메일을 가진 사용자가 없습니다.");
+          return res.status(404).json({
+            success: false,
+            message: "해당 이메일을 가진 사용자가 없습니다.",
+          });
+        }
+      }
+    );
+  } catch (error) {
+    console.error("회원 정보 수정 중 오류:", error);
+    return res.status(500).json({
+      success: false,
+      message: "내부 서버 오류",
+      details: error.message,
+    });
+  }
+});
+
+// -----------------------------------240627 kth 회원정보 수정  ---------------------------------
 app.get("/signup", (req, res) => {
   const sqlQuery = "SELECT * FROM movie.signup;";
   connection.query(sqlQuery, (err, result) => {

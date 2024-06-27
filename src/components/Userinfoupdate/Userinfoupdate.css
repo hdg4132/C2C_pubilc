@@ -1,0 +1,141 @@
+/* -----------------------------------------240624 kwj signup 전체영역----------------------------------------------------- */ 
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+html, body{font-family: 'Pretendard-Regular';}
+html * , body *{box-sizing: border-box;}
+
+.container_fix {
+    width: 1310px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+#sub_banner {
+    padding: 140px 0;
+    background: url('/public/subBanner.png') no-repeat center center / cover;
+}
+
+#sub_banner h2 {
+    font-size: 54px;
+    letter-spacing: 0.2em;
+    text-shadow: 3px 3px 15px rgba(0, 0,0, 0.6 );
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+#sub_banner p {
+    text-shadow: 3px 3px 15px rgba(0, 0,0, 0.6 );
+    color: #fff;
+    letter-spacing: 0.2em;
+    font-size: 18px;
+}
+
+main h3 {
+    font-size: 30px;
+    text-align: center;
+    margin: 50px 0;
+    font-weight: 700;
+}
+
+.signup_form {
+    border-top: 1px solid #333;
+    width: 500px;
+    margin: 0 auto;
+    padding: 35px 20px;
+    box-sizing: border-box;
+}
+
+.signup_form > .signup_form_con {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.signup_form label {
+    font-size: 12px;
+    display: inline-block;
+    width: 80px;
+    line-height: 30px;
+}
+
+.signup_form input {
+    width: 285px;
+    height: 30px;
+    font-size: 12px;
+    padding: 0 10px;
+}
+
+.btn_check {
+    width: 90px;
+    height: 30px;
+    font-size: 13px;   
+    color: #ffb800;
+    background-color: #fff;
+    border:1px solid #ffb800;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.password_wrap {
+    height: 35px;
+}
+
+.signup_form p {
+    font-size: 9px;
+    color: #ff0000;
+    margin: 5px 0;
+}
+
+.mail_input_wrap {
+    width: calc(100% - 80px);
+    height: 35px;
+}
+
+.mail_input {
+    display: flex;
+}
+
+
+#btn_signup {
+    text-align: center;
+    padding: 75px 0 100px 0;
+}
+
+#btn_signup button {
+    width: 135px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.btn_back{
+    display: inline-block;
+    width: 135px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #ffb800;
+    background-color: #fff;
+    border:1px solid #ffb800;
+    margin-right: 15px;
+    padding: 12px;
+}
+
+.btn_signup {
+    color: #fff;
+    background-color: #ffb800;
+    border:1px solid #ffb800;
+}
+
