@@ -211,7 +211,7 @@ let seatList = () => {
 
     // createOrderNumber에는 주문번호를 생성한다.
     const createOrderNumber =
-      String(userInfo.userId) +
+      String(userInfo.userid) +
       String(date.getFullYear()) +
       String(date.getMonth() + 1) +
       String(date.getDate()) +
@@ -236,7 +236,7 @@ let seatList = () => {
         normal: normal,                       // 일반석 개수
         extra: extra,                         // 프리미엄석 개수
         orderNumber: createOrderNumber,       // 주문번호
-        userId: userInfo.userId,              // 사용자의 고유 id
+        userId: userInfo.userid,              // 사용자의 고유 id
         movieName: movies.name,               // 영화명
         id: movies.id,                        // 영화 고유번호
         name: nameInfo,                       // 사용자 이름

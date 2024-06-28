@@ -53,10 +53,10 @@ const MovieInfo = ({ movie, selectedMovie, selectedDate, selectedTime, selectedS
         <p>{selectedTime}</p> {/* 선택된 시간 */}
         <p>{selectedSeats.join(', ')}</p> {/* 선택된 좌석 목록 */}
       </div>
-      <div className="price"> {/* 총 금액 표시 영역 */}
+      {/* <div className="price"> 총 금액 표시 영역
         <span>총 금액</span>
-        <span>{selectedSeats.length * 14000} 원</span> {/* 선택된 좌석 수에 따른 총 금액 계산 */}
-      </div>
+        <span>{selectedSeats.length * 14000} 원</span> {/* 선택된 좌석 수에 따른 총 금액 계산 
+      </div> 현재 좌석 위치에따른 가격 함수로 결정하므로 결제단에서 표시*/}
       <Link to="/seat-booking/modal" state={{ background: location }} onClick={handlePayClick} className="link-pay">
       결제하기 <Outlet />
       </Link> {/* 결제 버튼 */}

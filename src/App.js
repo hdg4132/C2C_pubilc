@@ -160,17 +160,13 @@ const App = () => {
 
         {/*-------------------kth-------------------------*/}
           <Route path="/signup" element={<Signup />} /> {/* 회원가입 - kwj */}
+          
           <Route path="/completeOrder" element={<TicketCompleteOrder />} /> {/* 결제완료페이지 hms */}
+
           <Route path="/Login" element={<Login />}></Route> {/* 로그인 - kth */}
           <Route path="/Mypage" element={<Mypage />}></Route> {/* 마이페이지 - kth */}
           <Route path="/userinfoupdate" element={<Userinfoupdate />}></Route> {/* 회원정보 수정 - kth */}
 
-
-
-
-
-
-       
           <Route path="/movie/:page" element={<MovieList />} /> {/* 영화목록 - sjh */}
           <Route path='/movie/write' element={<MovieWrite/>}/>{/* 영화글쓰기 - sjh */}
           <Route path='/movie/edit/:id' element={<MovieEdit/>}/>{/* 영화수정 - sjh */}
