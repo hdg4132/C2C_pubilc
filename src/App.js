@@ -18,10 +18,10 @@ import Reservations from './pages/Ticket/Reservations'; // 예약 내역을 보�
 import PaymentPage from './pages/Ticket/PaymentPage'; // 결제 페이지를 보여주는 컴포넌트를 가져옴
 import './pages/Ticket/Ticket.css'; // 스타일(디자인) 파일을 가져옴
 
-import MovieList from './pages/movie/Movielist.js'
-import MovieWrite from './pages/movie/Moviewrite.js'
-import MovieEdit from './pages/movie/Movieedit.js'
-import MovieView from './pages/movie/Movieview.js'
+import MovieList from './pages/movie/Movielist'
+import MovieWrite from './pages/movie/Moviewrite'
+import MovieEdit from './pages/movie/Movieedit'
+import MovieView from './pages/movie/Movieview'
 import Contact from './pages/cs/Contact';
 
 const response = await axios.get('//localhost:8000/board_movie');

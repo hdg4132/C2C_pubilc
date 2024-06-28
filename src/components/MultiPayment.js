@@ -63,21 +63,19 @@ const MultiPayment = ({
     };
     }, []); // 빈 배열을 사용하여 컴포넌트가 처음 마운트될 때 한 번만 실행되도록 합니다.
     
-
-    const [extra1, setExtra1] = useState(0); // 일반석 개수 저장
-    const [normal1, setNormal1] = useState(0); // 특수석 개수 저장
-    const [totalSeat1, setTotalSeat1] = useState(0); // 총 좌석 개수저장
+    const [extra, setExtra] = useState(0); // 일반석 개수 저장
+    const [normal, setNormal] = useState(0); // 특수석 개수 저장
+    const [totalSeat, setTotalSeat] = useState(0); // 총 좌석 개수저장
+    
     // 좌석 정보가 들어오면 seats 변수에 저장
-    const seats = ticket.seat
-  
-    // 페이지가 랜더되었을때 seats변수 값을 판별하고 개수를 저장 
+    const seats = ticket.selectedSeats;
+     
     useEffect (() =>{
     const calSeat = () => {
-      var sumExtra = 0
-      var sumNormal = 0
-      seats.forEach((seat)=>{
-  
-        // 좌석 판별 A, B, C열이면 특수석으로 분류하고 개수증가
+      var sumExtra = 0;
+      var sumNormal = 0;
+      {seats && seats.map((seat)=>{
+              // 좌석 판별 A, B, C열이면 특수석으로 분류하고 개수증가
       if(seat.includes("A")){
         sumExtra += 1
       } else if(seat.includes("B")){
@@ -87,21 +85,17 @@ const MultiPayment = ({
       } else{
         sumNormal += 1
       }
-  
-      setExtra1(sumExtra)
-      setNormal1(sumNormal)
-      setTotalSeat1(sumExtra+sumNormal)
-  
-    })}
+      setExtra(sumExtra)
+      setNormal(sumNormal)
+      setTotalSeat(sumExtra+sumNormal)
+    })}}
     calSeat()
   }, [])
   
   // 좌석 가격
   let totalTicketPrice = () =>{
     const extraPrice = 5000;
-  
-    let sumprice = ((ticket.price*totalSeat1)+(extra1*extraPrice));
-    
+    let sumprice = ((ticket.price*totalSeat)+(extra*extraPrice));
     return sumprice
   }
 
