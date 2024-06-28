@@ -10,8 +10,11 @@ function MyPage() {
     const [showPopup, setShowPopup] = useState(false); // 팝업 상태 변수 추가
     const [orders, setOrders] = useState([]); // 예매내역 상태 변수 추가
     const itemsPerPage = 10;
-    const userId = 1; // 실제 로그인한 사용자의 ID로 설정해야 합니다.
+    const userInfo = JSON.parse(sessionStorage.getItem('userData'))
+    const userId = userInfo.userid; // 실제 로그인한 사용자의 ID로 설정해야 합니다.
     const navigate = useNavigate();
+
+
 
     useEffect(() => {
         const userInfo = JSON.parse(sessionStorage.getItem('userData'))
@@ -23,15 +26,12 @@ function MyPage() {
         }
       }, [])
 
-    useEffect(() => {
-        fetchOrders();
-    }, []); // 페이지 로드 시 예매내역을 불러오도록 변경
-
-    const fetchOrders = async () => {
+      const fetchOrders = async () => {
         try {
             const response = await axios.get(`${Server_URL}/orders?userId=${userId}`);
             if (response.data.success) {
                 setOrders(response.data.data);
+                console.log(response.data.data)
             } else {
                 console.error('에러 orders:', response.data.message);
             }
@@ -39,6 +39,12 @@ function MyPage() {
             console.error('에러 data:', error);
         }
     };
+
+    useEffect(() => {
+        fetchOrders();
+    }, []); // 페이지 로드 시 예매내역을 불러오도록 변경
+
+    
 
     const onPageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -105,14 +111,14 @@ function MyPage() {
                 <div className="MyTicketing">
                     <h3>나의 예매내역</h3>
                     <div className="post_line" />
-                    {displayOrders.map((order) => (
-                        <div key={order.id}>
+                    {displayOrders.map((orders) => (
+                        <div key={orders.id}>
                             <div className="movie_info">
-                                <div className="movieImage" style={{ backgroundImage: `url(${order.imageURL})` }} />
+                                <div className="movieImage" style={{ backgroundImage: `url(${orders.imageURL})` }} />
                                 <div className="info_text">
-                                    <p className="movie_text1">{order.orderName}</p>
-                                    <p className="movie_text2">{order.date} {order.time} | {order.seat}</p>
-                                    <p className="movie_text3">{order.seatPrice}원 ({order.totalCount}매)</p>
+                                    <p className="movie_text1">{orders.orderName}</p>
+                                    <p className="movie_text2">{orders.date} {orders.time} | {orders.seat}</p>
+                                    <p className="movie_text3">{orders.totalAmount}원 ({orders.totalCount}매)</p>
                                 </div>
                             </div>
                             <div className="post_line" />

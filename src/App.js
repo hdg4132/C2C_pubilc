@@ -1,14 +1,14 @@
 
 import "./reset.css";
+import {useReducer, useRef, createContext, useState, useEffect} from "react"
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Signup from "./pages/signup/Signup.js";
-import Main from "./components/Main.js";
 import { TicketModal} from './pages/Ticket/TicketModal';
 import TicketCompleteOrder from './pages/Ticket/TicketCompleteOrder';
 import Login from "./components/Logins/Login.js";
 import Mypage from "./components/moviepage/MyPage.js";
-import React, { useState, useEffect } from 'react'; // React에서 필요한 기능들을 가져옴
 import Userinfoupdate from "./components/Userinfoupdate/Userinfoupdate.js";
+import Main from "./components/Main.js";
 
 import axios from 'axios'; // 서버에 요청을 보내는 도구를 가져옴
 import QuickBooking from './pages/./Ticket/QuickBooking'; // 빠른 예약 기능을 하는 컴포넌트를 가져옴
@@ -17,6 +17,33 @@ import MovieInfo from './pages/Ticket/MovieInfo'; // 영화 정보를 보여주�
 import Reservations from './pages/Ticket/Reservations'; // 예약 내역을 보여주는 컴포넌트를 가져옴
 import PaymentPage from './pages/Ticket/PaymentPage'; // 결제 페이지를 보여주는 컴포넌트를 가져옴
 import './pages/Ticket/Ticket.css'; // 스타일(디자인) 파일을 가져옴
+
+import MovieList from './pages/movie/Movielist.js'
+import MovieWrite from './pages/movie/Moviewrite.js'
+import MovieEdit from './pages/movie/Movieedit.js'
+import MovieView from './pages/movie/Movieview.js'
+import Contact from './pages/cs/Contact';
+
+const response = await axios.get('//localhost:8000/board_movie');
+const mockData =response.data;
+
+function reducer(state, action){
+  switch(action.type){
+    case 'CREATE': 
+      return [action.data, ...state];
+    case 'UPDATE': 
+      return state.map((item)=>
+      String(item.id)===String(action.data.id) ? action.data : item);
+    case 'DELETE':
+      return state.filter((item)=>String(item.id) !== String(action.id))
+    default:
+      return state;
+
+  }
+}
+
+export const PostStateContext = createContext();
+export const PostDispatchContext = createContext();
 
 const App = () => { 
    // 모달창용 location.state
@@ -27,7 +54,7 @@ const App = () => {
   const [selectedDate, setSelectedDate] = useState(null); // 선택한 날짜를 저장할 공간
   const [selectedTime, setSelectedTime] = useState(null); // 선택한 시간을 저장할 공간
   const [selectedSeats, setSelectedSeats] = useState([]); // 선택한 좌석들을 저장할 공간
-  const [localmovie, setLocalMovie] = useState([]); // 영화 사진을 저장할 공간
+  const [localmovie, setLocalMovie] = useState([]); // 영화 사진을 저장할 공간lo
   const [movie, setMovie] = useState([]); // 영화 목록을 저장할 공간
 
   useEffect(() => { // 컴포넌트가 화면에 처음 나타날 때 실행되는 부분
@@ -57,12 +84,50 @@ const App = () => {
 
   console.log(movieId); // 가져온 영화 데이터를 콘솔에 출력
 
+  //게시판 글쓰기 sjh
+  const [data, dispatch] = useReducer(reducer,mockData)
+  const idRef = useRef(4);
+ 
+  
+  const onCreate=(title,movie_status,img,content)=>{//게시글 추가
+    dispatch({
+      type:"CREATE", 
+      data:{
+        id: idRef.current++,
+        title,
+        movie_status,
+        img,
+        content,
+      },
+      
+    })
+  }
+  const onEdit=(id,title,movie_status,img,content)=>{ //게시글 수정
+    dispatch({
+      type:'UPDATE',
+      data:{
+        id,
+        title,
+        movie_status,
+        img,
+        content,
+      },
+    })
+  }
+  const onDelete=(id)=>{//게시글 삭제
+    dispatch({
+      type:'DELETE',
+      id
+    })
+  }
+  // //게시판 글쓰기 
   return ( // 화면에 보여줄 내용을 작성하는 부분입니다.
-    <div className="container"> 
 
-
+<PostStateContext.Provider value={data}>
+<PostDispatchContext.Provider value={{onCreate, onEdit, onDelete}}>
       
       <Routes>  
+        <Route path="/" element={<Main/>}/>
         {/*-------------------kjh-------------------------*/}
 
         <Route path="/booking" element={
@@ -87,21 +152,35 @@ const App = () => {
             setSelectedSeats={setSelectedSeats} // 선택한 좌석들을 설정하는 함수를 전달
           />
         }>
-          {background && <Route path="/ticket/modal" element={<TicketModal />} />}  {/* 결제용 모달창 hms */}
+          {background && <Route path="/seat-booking/modal" element={<TicketModal />} />}  {/* 결제용 모달창 hms */}
           </Route>
 
         {/* <Route path="/payment" element={<PaymentPage />} /> 
         <Route path="/reservations" element={<Reservations />} />  */}
 
         {/*-------------------kth-------------------------*/}
-          <Route path="/" element={<Main />} />
           <Route path="/signup" element={<Signup />} /> {/* 회원가입 - kwj */}
           <Route path="/completeOrder" element={<TicketCompleteOrder />} /> {/* 결제완료페이지 hms */}
           <Route path="/Login" element={<Login />}></Route> {/* 로그인 - kth */}
           <Route path="/Mypage" element={<Mypage />}></Route> {/* 마이페이지 - kth */}
           <Route path="/userinfoupdate" element={<Userinfoupdate />}></Route> {/* 회원정보 수정 - kth */}
+
+
+
+
+
+
+       
+          <Route path="/movie/:page" element={<MovieList />} /> {/* 영화목록 - sjh */}
+          <Route path='/movie/write' element={<MovieWrite/>}/>{/* 영화글쓰기 - sjh */}
+          <Route path='/movie/edit/:id' element={<MovieEdit/>}/>{/* 영화수정 - sjh */}
+          <Route path='/movie/post/:id' element={<MovieView/>}/>{/* 영화상세 - sjh */}
+          <Route path='/contact' element={<Contact/>}/>{/* 영화상세 - sjh */}
+
         </Routes>
-      </div>
+        </PostDispatchContext.Provider>
+        </PostStateContext.Provider>
+
   );
 };
 
