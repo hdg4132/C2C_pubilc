@@ -67,7 +67,6 @@ const Movielist=()=>{
     };
     return(
         <div className="Movielist">
-            <Header></Header>
             <Subbanner title={'요즘 영화'} text={'최근 개봉작과 개봉 예정작을 만나보세요.'} pageName={`sub_movie`}/>
              <div className="content_wrap">
                 <div className="content_header">
