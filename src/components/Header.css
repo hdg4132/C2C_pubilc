@@ -1,0 +1,18 @@
+header{padding: 15px 0 ; border-bottom:1px solid #f9f9f9}
+header > div{display: flex; justify-content: space-between; align-items: center;}
+.logo{cursor:pointer}
+nav{}
+nav ul{display: flex;}
+nav ul li{}
+nav ul li a{padding: 0 30px; font-weight:600; color:#333; cursor:pointer;}
+nav ul li.close a{color:#999}
+nav ul li a:hover{color:#FFB800;}
+
+.member_info{display: flex; align-items: center;flex-wrap: wrap;}
+.member_info li:nth-child(2){padding-left: 10px; margin-left: 10px; position: relative;}
+.member_info li:nth-child(2):before{content:''; display: block; position: absolute; left: 0; top: 0; bottom: 0; background: #999; width: 1px;}
+.member_info li a{color:#999; font-size:13px; cursor:pointer;}
+.all_menu{ display: block; background: #FFB800; width: 30px; height: 30px; border-radius:50%; position: relative; margin-left: 15px;}
+.all_menu_span{background: #fff; display: block; width: 50%; height: 2px; border-radius:2px; position: absolute; left: 50%; top: 50%; transform:translate(-50%,-50%)}
+.all_menu_span:before{content:''; background: #fff; display: block; width: 100%; height: 2px; border-radius:2px; position: absolute; left: 50%; top: 0%; transform:translate(-50%,200%)}
+.all_menu_span:after{content:''; background: #fff; display: block; width: 100%; height: 2px; border-radius:2px; position: absolute; left: 50%; top: 0%; transform:translate(-50%,-200%)}

@@ -1,5 +1,6 @@
 
 import "./reset.css";
+import Header from "./components/Header.js";
 import {useReducer, useRef, createContext, useState, useEffect} from "react"
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Signup from "./pages/signup/Signup.js";
@@ -23,6 +24,7 @@ import MovieWrite from './pages/movie/Moviewrite'
 import MovieEdit from './pages/movie/Movieedit'
 import MovieView from './pages/movie/Movieview'
 import Contact from './pages/cs/Contact';
+import Footer from "./components/Footer.js";
 
 const response = await axios.get('//localhost:8000/board_movie');
 const mockData =response.data;
@@ -124,9 +126,10 @@ const App = () => {
   }
   // //게시판 글쓰기 
   return ( // 화면에 보여줄 내용을 작성하는 부분입니다.
-
-<PostStateContext.Provider value={data}>
-<PostDispatchContext.Provider value={{onCreate, onEdit, onDelete}}>
+<>
+      <Header/> 
+      <PostStateContext.Provider value={data}>
+      <PostDispatchContext.Provider value={{onCreate, onEdit, onDelete}}>
       
       <Routes>  
         <Route path="/" element={<Main/>}/>
@@ -176,8 +179,12 @@ const App = () => {
           <Route path='/contact' element={<Contact/>}/>{/* 영화상세 - sjh */}
 
         </Routes>
+
         </PostDispatchContext.Provider>
         </PostStateContext.Provider>
+         
+        <Footer/>
+</>
 
   );
 };

@@ -14,6 +14,8 @@
     width: 100%;
     position: relative;
 }
+.sub_booking.sub_banner{background-image: url(../../assets/subBanner_ticket.png)}
+
 
 .header img {
     width: 100%;
