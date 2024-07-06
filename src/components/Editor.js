@@ -9,7 +9,17 @@ const Editor=({initData, onSubmit})=>{
     title: "",
     movie_status: "개봉예정",
     content: "",
+    userid:"",
   });
+
+  const userInfo = JSON.parse(sessionStorage.getItem("userData"));
+  
+  useEffect(() => {
+    setInput({
+      ...input,
+      userid: userInfo.userid
+    })
+  }, [])
 
   const [img, setImg] = useState({
     fileName: "",
@@ -45,6 +55,7 @@ const Editor=({initData, onSubmit})=>{
     formData.append('title', input.title);
     formData.append('movie_status', input.movie_status);
     formData.append('content', input.content);
+    formData.append('user_id', input.userid);
     if(img){
       formData.append('img', img);
       if(initData){

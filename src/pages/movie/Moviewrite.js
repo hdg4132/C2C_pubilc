@@ -9,7 +9,7 @@ const Moviewrite=()=>{
     const nav = useNavigate();
     const {onCreate} = useContext(PostDispatchContext)
     const onSubmit = (input)=>{
-        onCreate(input.title, input.status,input.content);
+        onCreate(input.title, input.status,input.content,input.userid);
         nav('/movie', {replace: true})
     }
     return(

@@ -17,7 +17,8 @@ const MovieEdit=()=>{
                 params.id, 
                 input.title, 
                 input.status, 
-                input.content
+                input.content,
+                input.userid,
                 ) 
                 nav('/movie/1',{replace:true })
             }

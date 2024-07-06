@@ -89,7 +89,7 @@ const App = () => {
   const idRef = useRef(4);
  
   
-  const onCreate=(title,movie_status,img,content)=>{//게시글 추가
+  const onCreate=(title,movie_status,img,content,userid)=>{//게시글 추가
     dispatch({
       type:"CREATE", 
       data:{
@@ -98,11 +98,12 @@ const App = () => {
         movie_status,
         img,
         content,
+        userid,
       },
       
     })
   }
-  const onEdit=(id,title,movie_status,img,content)=>{ //게시글 수정
+  const onEdit=(id,title,movie_status,img,content,userid)=>{ //게시글 수정
     dispatch({
       type:'UPDATE',
       data:{
@@ -111,6 +112,7 @@ const App = () => {
         movie_status,
         img,
         content,
+        userid
       },
     })
   }

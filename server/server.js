@@ -316,7 +316,7 @@ app.post("/login", (req, res) => {
               password,
               result[0].password
             );
-            if (isPasswordMatch && usertype == result[0].usertype) {
+            if (isPasswordMatch) {
               if (!req.session) {
                 req.session = {};
               }

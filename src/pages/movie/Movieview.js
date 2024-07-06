@@ -38,8 +38,10 @@ const Movieview=()=>{
             setLoading(false); // 로딩 완료
           });
       }, [id]);
-  
+      console.log(post)
+
     const onClickDelete=async()=>{
+        if(userInfo.userid === post.user_id || userInfo.usertype === admin) {
         if(window.confirm("삭제하시겠습니까?")){ // 확인버튼 = true
             //일기삭제로직
             await Axios.post(`http://localhost:8000/board_movie/post/delete`, {
@@ -56,6 +58,11 @@ const Movieview=()=>{
             nav('/movie/1',{replace:true})
         }
     }
+    else{
+        alert("권한이 없습니다, 본인 id의 게시글만 수정하실 수 있습니다")
+        nav(`/movie/1`)
+    }
+    }
     if (loading) {
         return <div>Loading...</div>; // 로딩 상태 표시
     }
@@ -66,6 +73,19 @@ const Movieview=()=>{
 
     if (!post) {
         return null; // post가 null일 경우 아무것도 렌더링하지 않음
+    }
+
+    const userInfo = JSON.parse(sessionStorage.getItem("userData"));
+    const admin = "2"
+    console.log(userInfo)
+    const navCheck = async () => {
+        if(userInfo.userid === post.user_id || userInfo.usertype === admin) {
+            nav(`/movie/edit/${params.id}`)
+        }
+        else{
+            alert("권한이 없습니다, 본인 id의 게시글만 수정하실 수 있습니다")
+            nav(`/movie/1`)
+        }
     }
     
     return(
@@ -87,7 +107,7 @@ const Movieview=()=>{
                         <div className="btn_list">
                             <Button text={'목록으로'}  onClick={()=>{nav(`/movie/1`)}} />
                             <Button text={'삭제하기'}  onClick={()=>{onClickDelete()}} />
-                            <Button text={'수정하기'}  onClick={()=>{nav(`/movie/edit/${params.id}`)}} />
+                            <Button text={'수정하기'}  onClick={navCheck} />
                             <Button text={'글쓰기'} color={"color"} onClick={()=>{nav(`/movie/write`)}} /> 
                         </div>
                     </div> 
