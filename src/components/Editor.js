@@ -94,6 +94,7 @@ const Editor=({initData, onSubmit})=>{
                             <label htmlFor="" className="write_label">제목</label>
                             <input type="text" placeholder="제목을 입력하세요" name="title" onChange={onChangeInput} value={input.title} required/>
                         </div>
+                        <p>{input.userid}</p>
                         <div className="write_con">
                             <label htmlFor="" className="write_label">개봉상태</label>
                             <select name="movie_status" value={input.movie_status} onChange={onChangeInput}>

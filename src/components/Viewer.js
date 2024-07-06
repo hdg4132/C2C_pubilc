@@ -2,13 +2,14 @@
 import star_fill from '../assets/star_fill.png'
 import star_line from '../assets/star_line.png'
 
-const Viewer=({id, title, movie_status, img, content})=>{
+const Viewer=({id, title, movie_status, img, content,userid})=>{
     return(
         <div className="Viewer">
             <div className="content_title">
                 <h5><span className={`status ${movie_status==='상영중'?'ing':''}`}>{movie_status}</span>{title}</h5>
             </div>
             <div className="content_con">
+                <p>{userid}</p>
                 <div className='img_wrap'>
                     <img src={`//localhost:8000/uploads/${img}`}/>
                 </div>

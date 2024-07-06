@@ -99,7 +99,7 @@ const Movieview=()=>{
                 </div>
                 <div className="content_body">
                     <div className="container_fix">
-                        <Viewer title={post.title} movie_status={post.movie_status} img={post.img} content={post.content}/>
+                        <Viewer title={post.title} movie_status={post.movie_status} img={post.img} content={post.content} userid={post.user_id}/>
                     </div>
                 </div>
                 <div className="content_tail">
