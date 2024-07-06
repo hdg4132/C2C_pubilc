@@ -572,17 +572,17 @@ app.get('/board_movie', (req, res) => { //영화 게시판 목록 불러오기
 
 
 app.post('/board_movie/write', upload.single('img'), (req, res) => { //영화 게시판 글쓰기
-  const { title, movie_status, content } = req.body;
+  const { title, movie_status, content, userid } = req.body;
   const img = req.file ? req.file.filename : null;
 
   console.log({ title, movie_status, content } +',...'+ req.file.filename)
 
-  const sql = 'INSERT INTO board_movie (title, movie_status, img, content) VALUES (?, ?, ?, ?)';
+  const sql = 'INSERT INTO board_movie (title, movie_status, img, content, user_id) VALUES (?, ?, ?, ?, ?)';
   connection.query(sql, [title, movie_status, img, content], (err, results) => {
     if (err) {
       return res.status(500).send(err);
     }
-    res.status(200).json({ id: results.insertId, title, movie_status, img, content });
+    res.status(200).json({ id: results.insertId, title, movie_status, img, content, userid});
   });
 });
 
