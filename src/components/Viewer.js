@@ -21,6 +21,7 @@ const Viewer=({id, title, movie_status, img, content,userid})=>{
                 <div className="reply_tt">
                     <p>댓글 / 기대평</p>
                 </div>
+                {/*}
                 <ul className="reply_list">
                     <li>
                         <div className="reply_header">
@@ -51,7 +52,9 @@ const Viewer=({id, title, movie_status, img, content,userid})=>{
                         </div>
                     </li>
                 </ul>
+                */}
             </div>
+            {/*}
             <div className="write_reply">
                 <form action="" className="clearfix">
                     <div className="reply_header">
@@ -68,6 +71,7 @@ const Viewer=({id, title, movie_status, img, content,userid})=>{
                     <button className="btn_default color">댓글쓰기</button>
                 </form>
             </div>
+            */}
         </div>
     )
 }

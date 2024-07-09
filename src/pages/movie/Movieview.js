@@ -105,10 +105,15 @@ const Movieview=()=>{
                 <div className="content_tail">
                     <div className="container_fix">
                         <div className="btn_list">
+                            
                             <Button text={'목록으로'}  onClick={()=>{nav(`/movie/1`)}} />
-                            <Button text={'삭제하기'}  onClick={()=>{onClickDelete()}} />
-                            <Button text={'수정하기'}  onClick={navCheck} />
-                            <Button text={'글쓰기'} color={"color"} onClick={()=>{nav(`/movie/write`)}} /> 
+                            {userInfo != null ? (
+                                <>
+                                <Button text={'삭제하기'}  onClick={()=>{onClickDelete()}} /><Button text={'수정하기'}  onClick={navCheck} />
+                                <Button text={'글쓰기'} color={"color"} onClick={()=>{nav(`/movie/write`)}} />
+                                </>
+                            )  : ''}
+                            
                         </div>
                     </div> 
                 </div>

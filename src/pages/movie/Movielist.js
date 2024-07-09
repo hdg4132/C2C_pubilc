@@ -9,6 +9,7 @@ import MovieItem from './MovieItem'
 import Pagination from '../../components/Pagination'
 
 const Movielist=()=>{
+    const userInfo = JSON.parse(sessionStorage.getItem("userData"));
 
     const [posts, setPosts] = useState([]);
     const [count, setCount] = useState(0);
@@ -88,43 +89,11 @@ const Movielist=()=>{
                 </div>
                 <div className="content_tail">
                     <div className="container_fix">
-                        <div className="btn_list">
+                        {userInfo != null ? <div className="btn_list">
                             <Button text={'글쓰기'} color={'color'} onClick={()=>{nav('/movie/write')}}/>
-                        </div>
+                        </div> : ''}
+                        
                         <Pagination page={page || currentPage} count={count} handleChangePage={handleChangePage} postPerPage={postPerPage} />
-                        {/*
-                        <div className="pagination">
-                            <ul className="pagination_wrap">
-                                <li className="left double">
-                                    <a href=""><span></span></a>
-                                </li>
-                                <li className="left">
-                                    <a href=""><span></span></a>
-                                </li>
-                                <li className="active">
-                                    <a href="">1</a>
-                                </li>
-                                <li>
-                                    <a href="">2</a>
-                                </li>
-                                <li>
-                                    <a href="">3</a>
-                                </li>
-                                <li>
-                                    <a href="">4</a>
-                                </li>
-                                <li>
-                                    <a href="">5</a>
-                                </li>
-                                <li className="right">
-                                    <a href=""><span></span></a>
-                                </li>
-                                <li className="right double">
-                                    <a href=""><span></span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        */}
                     </div>
                 </div>
             </div>
