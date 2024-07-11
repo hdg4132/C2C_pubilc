@@ -1,12 +1,12 @@
-header{padding: 15px 0 ; border-bottom:1px solid #f9f9f9}
+header{padding: 15px 0 ; border-bottom:1px solid #f9f9f9; z-index: 5;}
 header > div{display: flex; justify-content: space-between; align-items: center;}
 .logo{cursor:pointer}
 nav{}
-nav ul{display: flex;}
+header nav ul{display: flex;}
 nav ul li{}
-nav ul li a{padding: 0 30px; font-weight:600; color:#333; cursor:pointer;}
-nav ul li.close a{color:#999}
-nav ul li a:hover{color:#FFB800;}
+header nav ul li a{padding: 0 30px; font-weight:600; color:#333; cursor:pointer;}
+header nav ul li.close a{color:#999}
+header nav ul li a:hover{color:#FFB800;}
 
 .member_info{display: flex; align-items: center;flex-wrap: wrap;}
 .member_info li:nth-child(2){padding-left: 10px; margin-left: 10px; position: relative;}

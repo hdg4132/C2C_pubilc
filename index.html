@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie portfolio</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+    <link
+    rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <header>
+        <div class="container_fix">
+            <nav><a><img src="images/image 9.png" alt="C2C"></a></nav>
+            <nav>
+                <ul class = "main_menu">
+                    <li><a>빠른예매</a></li>
+                    <li><a>요즘영화</a></li>
+                    <li><a>요즘극장</a></li>
+                    <li><a><strong>공지사항/이벤트</strong></a></li>
+                    <li><a>고객센터</a></li>
+                </ul>
+            </nav>
+                <nav>
+                <ul class = "info_wrap">
+                    <li><a>회원가입</a></li>
+                    <li><a>로그인</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <section class="mainbanner">
+          <div class="swiper main_slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="slide_con">
+                    <img src="images/image 2.png" alt="">
+                    <div class="text_box">
+                        <div class="container_fix">
+                            <h2>그녀가 죽었다</h2>
+                            <p>개봉 2024.05.15</p>
+                            <div class="yellow_box"><a href="">예매 바로가기</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="slide_con">
+                <img src="images/image 1.png" alt="">
+                <div class="text_box">
+                  <div class="container_fix">
+                    <h2>챌린저스</h2>
+                    <p>개봉 2024.04.24</p>
+                    <div class="yellow_box"><a href="">예매 바로가기</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="slide_con">
+                <img src="images/image 3.png" alt="">
+                <div class="text_box">
+                  <div class="container_fix">
+                    <h2>범죄도시4</h2>
+                    <p>개봉 2024.04.24</p>
+                    <div class="yellow_box"><a href="">예매 바로가기</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="slide_con">
+                <img src="images/image 4.png" alt="">
+                <div class="text_box">
+                  <div class="container_fix">
+                    <h2>극장판 하이큐!! <br>쓰레기장의 결전</h2>
+                    <p>개봉 2024.05.15</p>
+                    <div class="yellow_box"><a href="">예매 바로가기</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="slide_con">
+                <img src="images/image 5.png" alt="">
+                <div class="text_box">
+                  <div class="container_fix">
+                    <h2>악마와의 토크쇼</h2>
+                    <p>개봉 2024.05.08</p>
+                    <div class="yellow_box"><a href="">예매 바로가기</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="reserve" class="reserve">
+        <div class="text_box_title">
+          <div class="container_fix">
+            <div class="title">
+              <p>빠른 예매</p>
+            </div>
+                <div class = "reserve_box">
+                 <div class = "icon">
+                  <nav class="menu_box">
+                  <img src="images/icon1.png" alt="">
+                  <ul>
+                    <li>
+                      <a class="movie_name">영화명</a>
+                      <ul class="movie_name_list">
+                        <li><a href="#">그녀가 죽었다</a></li>
+                        <li><a href="#">챌린저스</a></li>
+                        <li><a href="#">범죄도시4</a></li>
+                        <li><a href="#">극장판 하이큐!! 쓰레기장의 결전</a></li>
+                        <li><a href="#">악마와의 토크쇼</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  </div>
+                </nav>
+                      <input type="date"
+                             id="currentDate"
+                             name="reserve_date"
+                             value="2024-06-19"
+                             min="currentDate"
+                             max="2024-09-19"/>
+                      <select required>
+                        <option value="select_time_box">시간 선택</option>
+                        <option value="0930">09:30</option>
+                        <option value="1000">10:00</option>
+                        <option value="1100">11:00</option>
+                        <option value="1130">11:30</option>
+                        <option value="1200">12:00</option>
+                        <option value="0900">13:10</option>
+                        <option value="0900">14:00</option>
+                        <option value="0900">15:30</option>
+                        <option value="0900">16:00</option>
+                        <option value="0900">17:00</option>
+                        <option value="0900">17:40</option>
+                        <option value="0900">19:00</option>
+                        <option value="0900">20:20</option>
+                        <option value="0900">21:00</option>
+                        <option value="0900">21:50</option>
+                        <option value="0900">23:00</option>
+                      </select>
+                      <div class = "quick_reserve">
+                        <p>예매하기</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </section>
+<section id = "board_wrap">
+<div class="container_fix">
+  <div class = "board_title">
+    <div class = "board_text">
+    <p>공지사항/이벤트</p>
+    <a href="#">+ 더보기</a>
+  </div>
+  <hr>
+  <div class="board_content">
+    <div class="board_con">
+      <p>게시글 제목이 노출됩니다.</p> <span>2024-05-27</span>
+    </div>
+    <hr>
+    <div class="board_con">
+      <P>게시글 제목이 노출됩니다.</p> <span>2024-05-27</span>
+    </div>
+    <hr>
+    <div class="board_con">
+      <p>게시글 제목이 노출됩니다.</p> <span>2024-05-27</span>
+    </div>
+    <hr>
+    <div class="board_con">
+      <p>게시글 제목이 노출됩니다.</p> <span>2024-05-27</span>
+    </div>
+    <hr>
+    <div class="board_con">
+      <p>게시글 제목이 노출됩니다.</p> <span>2024-05-27</span>
+    </div>
+    <hr>
+    <div class="board_con">
+      <p>게시글 제목이 노출됩니다.</p> <span>2024-05-27</span>
+    </div>
+    <hr>
+    </div>
+  </div>
+  <div class="todays_movie">
+  <div class="board_text">
+    <p>요즘 영화</p>
+    <a href="#">+더보기</a>
+  </div>
+  <img src="images/개봉예정작 슬라이드.png" alt="">
+  </div>
+</div>
+    </section>
+    <section id = "todays_theater">
+      <div class="container_fix">
+       <div class="theater_img">
+        <img src="images/Mask group.png" alt="">
+       </div>
+       <div class="theater_text">
+        <p>요즘 극장</p>
+       </div>
+      </div>
+    </section>
+    <section id = "info">
+      <div class="container_fix">
+      <div class = "qna">
+        <img src = "images/free-icon-question-5668097 (1).png" alt="" >
+        <p>자주묻는 질문</p>
+      </div>
+      <div class = "service">
+        <img src = "images/free-icon-customer-service-10041643 (1).png" alt="">
+        <p>1:1 문의 게시판</p>
+      </div>
+      <div class = "map">
+        <img src = "images/free-icon-map-3969582 (1).png" alt="">
+        <p>찾아오시는 길</p>
+      </div>
+      </div>
+    </section>
+    <footer>
+    <div class="container_fix">
+      <div class="footer">
+        <div class="footer_c2c">
+     <img src="images/image 9.png" alt="">
+        </div>
+     <div class="team_name">
+      <p>Come 2 cinema<br>
+      주소: 인천 남동구 인주대로 593 엔타스빌딩 12층<br>
+      제작: 강원준, 김지홍, 김태형, 신진희, 조혜린, 한만서</p>
+     </div>
+     <div class="copy_rights">
+      <p>COPYRIGHTS@2024.C2C.ALL RIGHTS RESERVED.</p>
+    </div>
+     <div class="privacy">
+      <p>개인정보처리방침 | 이메일무단수집거부</p>
+     </div>
+     <div class="sns_icon">
+      <div class="facebook_icon">
+        <img src="images/Group 46.png">
+      </div>
+      <div class="insta_icon">
+        <img src="images/Vector.png">
+      </div>
+      <div class="youtube_icon">
+        <img src="images/Vector (1).png">
+      </div>
+     </div>
+    </div>
+    </div>
+    </footer>
+                    </div>
+                   </div>
+                  </div>
+                </div>
+             </div>
+            </div>
+            </div>
+          </div>
+    </section>
+      <section style="height:500px"></section>
+    </main>
+                        
+                        
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper', {
+  // Optional parameters
+  loop: true,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  // And if we need scrollbar
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  },
+});  
+</script>
+<script src="main.js"></script>
+</body>
+</html>

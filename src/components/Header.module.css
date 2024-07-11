@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container_fix {
+    width: 1280px;
+    padding: 0 15px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    padding: 15px 32px;
+    width: 100%;
+}
+
+header .container_fix {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+header nav ul li {
+    display: inline-block;
+    padding: 18px;
+}
+
+header nav ul.main_menu {
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul.info_wrap {
+    color: #999;
+    font-size: 12px;
+}

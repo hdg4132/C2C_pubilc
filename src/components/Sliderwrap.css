@@ -1,0 +1,79 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide img {
+    display: block; 
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+
+}
+
+strong {
+    color:#ffb800;
+}
+
+.swiper-slide .container_fix h2{
+    font-size: 54px;
+    color: #fff;
+    text-shadow: 3px 3px 15px rgba(0,0,0,.6);
+    padding-left: 320px;
+    padding-top: 300px;
+    letter-spacing: .2em;
+    font-weight: bolder;
+}
+
+.yellow_box a {
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: .2em;
+    text-shadow: 3px 3px 15px rgba(0,0,0,.6);
+    padding-left: 43px;
+    letter-spacing: .2em;
+    font-weight: bolder;
+}
+
+div.yellow_box {
+    border: 3px solid #ffb800;
+    border-radius: 30px;
+    background: #ffb800;
+    width: 224px;
+    height: 60px;
+    text-align: center;
+    margin-left: 320px;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.slide_con {
+    position: relative;
+}
+
+.text_box {
+    position: absolute;
+    top: 0;
+}
+
+main .mainbanner .text_box p {
+    padding-left: 320px;
+    color: #fff;
+    text-shadow: 3px 3px 15px rgba(0,0,0,.6);
+    letter-spacing: .2em;
+    padding-top: 16px;
+    padding-bottom: 30px;
+}
+
+main .title p {
+    font-size: 45px;
+    text-align: center;
+    position: relative;
+    font-weight: bolder;
+    margin-top: 49px;
+}

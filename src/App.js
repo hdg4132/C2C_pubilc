@@ -1,4 +1,3 @@
-
 import "./reset.css";
 import Header from "./components/Header.js";
 import {useReducer, useRef, createContext, useState, useEffect} from "react"
