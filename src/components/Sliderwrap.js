@@ -4,8 +4,8 @@ import image2 from '../assets/image1.png';
 import image3 from '../assets/image3.png';
 import image4 from '../assets/image4.png';
 import image5 from '../assets/image5.png';
-import './Sliderwrap.css';
-import "swiper/swiper.min.css";
+// import './Sliderwrap.css';
+// import "swiper/swiper.min.css";
 import SwiperCore, { Navigation } from "swiper";
 
 

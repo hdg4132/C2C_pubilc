@@ -25,6 +25,7 @@ const SeatBooking = ({ movie, movieId, selectedMovie, selectedDate, selectedTime
 
   return ( // 화면에 보여줄 내용을 작성하는 부분
     <div className="booking"> {/*전체 예약 내용을 감싸는 큰 상자*/}
+
       <People selectedPeople={selectedPeople} setSelectedPeople={setSelectedPeople} /> {/*People 컴포넌트를 보여줌*/}
       <SeatSelection
         reservedSeat={reservedSeat} // 예약된 좌석 데이터를 전달
